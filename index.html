@@ -51,7 +51,7 @@
             align-items: center;
             justify-content: center;
             padding: 40px 80px 20px;
-            overflow-y: auto;
+            overflow: hidden;
             opacity: 0;
             pointer-events: none;
             transform: translateY(30px) scale(0.97);
@@ -69,6 +69,8 @@
         .slide-inner {
             max-width: 1080px;
             width: 100%;
+            transform-origin: top center;
+            transition: transform 0.3s var(--ease);
         }
 
         /* ==================== PROGRESS BAR ==================== */
@@ -165,6 +167,56 @@
             font-variant-numeric: tabular-nums;
             min-width: 60px;
             text-align: right;
+        }
+
+        .controls-zoom {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 16px;
+            padding-left: 16px;
+            border-left: 1px solid var(--border);
+        }
+
+        .zoom-label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            min-width: 32px;
+            text-align: center;
+        }
+
+        .zoom-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 80px;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--surface-2);
+            outline: none;
+            cursor: pointer;
+        }
+
+        .zoom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--blue);
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(90,122,255,0.4);
+        }
+
+        .zoom-slider::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--blue);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 8px rgba(90,122,255,0.4);
         }
 
         /* ==================== TYPOGRAPHY ==================== */
@@ -1278,7 +1330,13 @@
             <div class="controls-dots" id="dots"></div>
             <button class="ctrl-arrow" id="nextBtn">&#8594;</button>
         </div>
-        <div class="controls-counter" id="counter">01 / 09</div>
+        <div style="display:flex;align-items:center;">
+            <div class="controls-counter" id="counter">01 / 09</div>
+            <div class="controls-zoom">
+                <input type="range" class="zoom-slider" id="zoomSlider" min="50" max="100" value="100" step="5">
+                <span class="zoom-label" id="zoomLabel">100%</span>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -1371,6 +1429,19 @@
                 });
             });
         }
+
+        // Zoom control
+        const zoomSlider = document.getElementById('zoomSlider');
+        const zoomLabel = document.getElementById('zoomLabel');
+        const allInners = document.querySelectorAll('.slide-inner');
+
+        zoomSlider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            zoomLabel.textContent = val + '%';
+            allInners.forEach(inner => {
+                inner.style.transform = 'scale(' + (val / 100) + ')';
+            });
+        });
 
         // Init progress bar
         progress.style.width = (1 / totalSlides * 100) + '%';
