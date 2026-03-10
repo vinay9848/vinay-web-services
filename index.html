@@ -6,36 +6,38 @@
     <title>Webly — Pitch Deck</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <style>
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg: #0c0c10;
-            --surface: #16161d;
-            --surface-2: #1e1e28;
-            --border: rgba(255,255,255,0.06);
-            --text: #e8e6f0;
-            --text-dim: #7a7890;
-            --text-muted: #4e4c60;
-            --blue: #4f6ef7;
-            --blue-light: #7b93ff;
+            --bg: #0a0a12;
+            --surface: #131320;
+            --surface-2: #1a1a2e;
+            --border: rgba(255,255,255,0.07);
+            --text: #eae8f4;
+            --text-dim: #8280a0;
+            --text-muted: #504e68;
+            --blue: #5a7aff;
+            --blue-light: #8ba0ff;
             --mint: #3dd6c8;
             --coral: #ff6b8a;
             --peach: #ffb07a;
-            --violet: #9b7aff;
-            --grad-1: linear-gradient(135deg, #4f6ef7, #9b7aff);
-            --grad-2: linear-gradient(135deg, #3dd6c8, #4f6ef7);
+            --violet: #a080ff;
+            --grad-1: linear-gradient(135deg, #5a7aff, #a080ff);
+            --grad-2: linear-gradient(135deg, #3dd6c8, #5a7aff);
             --grad-3: linear-gradient(135deg, #ff6b8a, #ffb07a);
+            --ease: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         html, body {
             height: 100%;
             overflow: hidden;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ============ PRESENTATION CONTAINER ============ */
+        /* ==================== DECK ==================== */
         .deck {
             width: 100%;
             height: 100vh;
@@ -48,35 +50,48 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 60px 80px;
+            padding: 60px 80px 100px;
             opacity: 0;
             pointer-events: none;
-            transform: scale(0.96) translateY(20px);
-            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(30px) scale(0.97);
+            transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
             z-index: 0;
         }
 
         .slide.active {
             opacity: 1;
             pointer-events: auto;
-            transform: scale(1) translateY(0);
+            transform: translateY(0) scale(1);
             z-index: 2;
         }
 
         .slide-inner {
-            max-width: 1060px;
+            max-width: 1080px;
             width: 100%;
         }
 
-        /* ============ BOTTOM BAR (Presentation Controls) ============ */
+        /* ==================== PROGRESS BAR ==================== */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--grad-1);
+            z-index: 200;
+            transition: width 0.4s ease;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* ==================== BOTTOM CONTROLS ==================== */
         .controls {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             height: 56px;
-            background: var(--surface);
+            background: rgba(10,10,18,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-top: 1px solid var(--border);
             display: flex;
             align-items: center;
@@ -87,8 +102,8 @@
 
         .controls-brand {
             font-weight: 700;
-            font-size: 0.8rem;
-            letter-spacing: 1.5px;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
             background: var(--grad-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -98,7 +113,7 @@
         .controls-center {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
         }
 
         .controls-dots {
@@ -119,7 +134,7 @@
 
         .ctrl-dot.active {
             background: var(--blue);
-            box-shadow: 0 0 12px rgba(79,110,247,0.5);
+            box-shadow: 0 0 14px rgba(90,122,255,0.5);
             transform: scale(1.4);
         }
 
@@ -144,31 +159,19 @@
         }
 
         .controls-counter {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--text-muted);
             font-variant-numeric: tabular-nums;
             min-width: 60px;
             text-align: right;
         }
 
-        /* ============ PROGRESS BAR ============ */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: var(--grad-1);
-            z-index: 101;
-            transition: width 0.4s ease;
-            border-radius: 0 2px 2px 0;
-        }
-
-        /* ============ TYPOGRAPHY ============ */
+        /* ==================== TYPOGRAPHY ==================== */
         .tag {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             font-weight: 600;
             letter-spacing: 2.5px;
             text-transform: uppercase;
@@ -182,12 +185,13 @@
             height: 8px;
             border-radius: 50%;
             background: var(--blue);
+            box-shadow: 0 0 10px rgba(90,122,255,0.4);
         }
 
         h1, h2 {
             font-family: 'Instrument Serif', serif;
             font-weight: 400;
-            line-height: 1.1;
+            line-height: 1.08;
             letter-spacing: -1px;
         }
 
@@ -205,12 +209,12 @@
         .subtitle {
             font-size: 1.05rem;
             color: var(--text-dim);
-            line-height: 1.65;
+            line-height: 1.7;
             max-width: 520px;
             font-weight: 300;
         }
 
-        /* ============ 3D FLOATING OBJECTS ============ */
+        /* ==================== FLOATING 3D OBJECTS ==================== */
         .float-scene {
             perspective: 800px;
             position: absolute;
@@ -219,140 +223,99 @@
 
         .float-obj {
             transform-style: preserve-3d;
-            animation: float3d 8s ease-in-out infinite;
+            animation: floatY 7s ease-in-out infinite;
         }
 
-        @keyframes float3d {
-            0%, 100% { transform: rotateX(15deg) rotateY(-15deg) translateZ(0); }
-            25% { transform: rotateX(20deg) rotateY(-10deg) translateZ(10px); }
-            50% { transform: rotateX(10deg) rotateY(-20deg) translateZ(20px); }
-            75% { transform: rotateX(18deg) rotateY(-8deg) translateZ(5px); }
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0) rotateX(12deg) rotateY(-12deg); }
+            50% { transform: translateY(-18px) rotateX(18deg) rotateY(-18deg); }
         }
 
         .cube-3d {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             position: relative;
             transform-style: preserve-3d;
         }
 
         .cube-face {
             position: absolute;
-            width: 60px;
-            height: 60px;
-            border: 1px solid rgba(79,110,247,0.2);
+            width: 55px;
+            height: 55px;
+            border: 1px solid rgba(90,122,255,0.15);
             border-radius: 10px;
         }
 
-        .cube-face-front  { transform: translateZ(30px); background: rgba(79,110,247,0.06); }
-        .cube-face-back   { transform: translateZ(-30px) rotateY(180deg); background: rgba(79,110,247,0.03); }
-        .cube-face-left   { transform: translateX(-30px) rotateY(-90deg); background: rgba(155,122,255,0.05); }
-        .cube-face-right  { transform: translateX(30px) rotateY(90deg); background: rgba(155,122,255,0.05); }
-        .cube-face-top    { transform: translateY(-30px) rotateX(90deg); background: rgba(61,214,200,0.06); }
-        .cube-face-bottom { transform: translateY(30px) rotateX(-90deg); background: rgba(61,214,200,0.03); }
+        .cube-face-front  { transform: translateZ(27px); background: rgba(90,122,255,0.05); }
+        .cube-face-back   { transform: translateZ(-27px) rotateY(180deg); background: rgba(90,122,255,0.02); }
+        .cube-face-left   { transform: translateX(-27px) rotateY(-90deg); background: rgba(160,128,255,0.04); }
+        .cube-face-right  { transform: translateX(27px) rotateY(90deg); background: rgba(160,128,255,0.04); }
+        .cube-face-top    { transform: translateY(-27px) rotateX(90deg); background: rgba(61,214,200,0.05); }
+        .cube-face-bottom { transform: translateY(27px) rotateX(-90deg); background: rgba(61,214,200,0.02); }
 
         .sphere-3d {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(155,122,255,0.15), rgba(79,110,247,0.03));
-            border: 1px solid rgba(155,122,255,0.12);
-            box-shadow: 0 0 40px rgba(155,122,255,0.08), inset 0 0 30px rgba(155,122,255,0.05);
+            background: radial-gradient(circle at 30% 30%, rgba(160,128,255,0.14), rgba(90,122,255,0.02));
+            border: 1px solid rgba(160,128,255,0.1);
+            box-shadow: 0 0 40px rgba(160,128,255,0.06);
         }
 
         .ring-3d {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
-            border: 2px solid rgba(61,214,200,0.15);
-            transform-style: preserve-3d;
-            animation: spinRing 12s linear infinite;
+            border: 2px solid rgba(61,214,200,0.12);
+            animation: spinRing 14s linear infinite;
         }
 
         @keyframes spinRing {
             to { transform: rotateX(60deg) rotateZ(360deg); }
         }
 
-        .pyramid-3d {
-            width: 0;
-            height: 0;
-            border-left: 30px solid transparent;
-            border-right: 30px solid transparent;
-            border-bottom: 50px solid rgba(255,107,138,0.1);
-            filter: drop-shadow(0 0 15px rgba(255,107,138,0.1));
-        }
-
         .donut-3d {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            border: 12px solid rgba(255,176,122,0.12);
-            box-shadow: 0 0 25px rgba(255,176,122,0.06);
-            animation: spinDonut 15s linear infinite;
+            border: 10px solid rgba(255,176,122,0.1);
+            animation: spinDonut 18s linear infinite;
         }
 
         @keyframes spinDonut {
             to { transform: rotateX(45deg) rotateY(360deg); }
         }
 
-        .hex-3d {
-            width: 50px;
-            height: 28px;
-            background: rgba(79,110,247,0.08);
-            position: relative;
-            border-left: 1px solid rgba(79,110,247,0.15);
-            border-right: 1px solid rgba(79,110,247,0.15);
-        }
-
-        .hex-3d::before, .hex-3d::after {
-            content: '';
-            position: absolute;
-            left: -1px;
-            width: 0;
-            border-left: 26px solid transparent;
-            border-right: 26px solid transparent;
-        }
-
-        .hex-3d::before {
-            top: -14px;
-            border-bottom: 14px solid rgba(79,110,247,0.08);
-        }
-
-        .hex-3d::after {
-            bottom: -14px;
-            border-top: 14px solid rgba(79,110,247,0.08);
-        }
-
-        /* ============ SLIDE 1: COVER ============ */
+        /* ==================== SLIDE 1: COVER ==================== */
         .cover-center { text-align: center; }
 
         .cover-logo {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 10px 24px 10px 10px;
+            padding: 8px 22px 8px 8px;
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 60px;
-            margin-bottom: 40px;
+            margin-bottom: 44px;
         }
 
         .cover-logo-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
             background: var(--grad-1);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: white;
         }
 
         .cover-logo-name {
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         .cover-subtitle {
@@ -363,13 +326,11 @@
         .cover-metrics {
             display: flex;
             justify-content: center;
-            gap: 48px;
-            margin-top: 56px;
+            gap: 56px;
+            margin-top: 60px;
         }
 
-        .metric {
-            text-align: center;
-        }
+        .metric { text-align: center; }
 
         .metric-value {
             font-family: 'Instrument Serif', serif;
@@ -382,7 +343,7 @@
         }
 
         .metric-label {
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             color: var(--text-muted);
             margin-top: 6px;
             letter-spacing: 1.5px;
@@ -390,19 +351,19 @@
             font-weight: 500;
         }
 
-        /* ============ CARD SYSTEM ============ */
+        /* ==================== CARDS ==================== */
         .card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 28px 24px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: border-color 0.3s, transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
         }
 
         .card:hover {
-            border-color: rgba(79,110,247,0.2);
-            transform: translateY(-6px) rotateX(2deg) rotateY(-1deg);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(79,110,247,0.05);
+            border-color: rgba(90,122,255,0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(90,122,255,0.04);
         }
 
         .card-icon {
@@ -416,21 +377,21 @@
             margin-bottom: 16px;
         }
 
-        .card-icon-blue { background: rgba(79,110,247,0.12); border: 1px solid rgba(79,110,247,0.1); }
-        .card-icon-mint { background: rgba(61,214,200,0.12); border: 1px solid rgba(61,214,200,0.1); }
-        .card-icon-coral { background: rgba(255,107,138,0.12); border: 1px solid rgba(255,107,138,0.1); }
-        .card-icon-violet { background: rgba(155,122,255,0.12); border: 1px solid rgba(155,122,255,0.1); }
-        .card-icon-peach { background: rgba(255,176,122,0.12); border: 1px solid rgba(255,176,122,0.1); }
+        .card-icon-blue   { background: rgba(90,122,255,0.1); border: 1px solid rgba(90,122,255,0.08); }
+        .card-icon-mint   { background: rgba(61,214,200,0.1); border: 1px solid rgba(61,214,200,0.08); }
+        .card-icon-coral  { background: rgba(255,107,138,0.1); border: 1px solid rgba(255,107,138,0.08); }
+        .card-icon-violet { background: rgba(160,128,255,0.1); border: 1px solid rgba(160,128,255,0.08); }
+        .card-icon-peach  { background: rgba(255,176,122,0.1); border: 1px solid rgba(255,176,122,0.08); }
 
         .card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
-        .card p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.55; }
+        .card p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.6; }
 
-        /* ============ GRIDS ============ */
+        /* ==================== GRIDS ==================== */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
         .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
 
-        /* ============ PROBLEM SLIDE ============ */
+        /* ==================== PROBLEM SLIDE ==================== */
         .problem-item {
             display: flex;
             gap: 14px;
@@ -439,14 +400,19 @@
             border: 1px solid var(--border);
             border-radius: 14px;
             margin-bottom: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .problem-item:hover {
+            border-color: rgba(255,107,138,0.15);
         }
 
         .problem-num {
             width: 28px;
             height: 28px;
             border-radius: 8px;
-            background: rgba(255,107,138,0.1);
-            border: 1px solid rgba(255,107,138,0.1);
+            background: rgba(255,107,138,0.08);
+            border: 1px solid rgba(255,107,138,0.08);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -456,7 +422,7 @@
             flex-shrink: 0;
         }
 
-        .problem-text { font-size: 0.85rem; color: var(--text-dim); line-height: 1.5; }
+        .problem-text { font-size: 0.85rem; color: var(--text-dim); line-height: 1.55; }
         .problem-text strong { color: var(--text); }
 
         .stat-card {
@@ -493,24 +459,24 @@
         .stat-label { font-size: 0.95rem; color: var(--text-dim); margin-top: 12px; line-height: 1.5; }
         .stat-source { font-size: 0.65rem; color: var(--text-muted); margin-top: 16px; font-style: italic; }
 
-        /* ============ PLANS ============ */
+        /* ==================== PLANS ==================== */
         .plan {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 32px 24px;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
         }
 
         .plan:hover {
-            transform: translateY(-6px);
+            transform: translateY(-5px);
             box-shadow: 0 16px 40px rgba(0,0,0,0.3);
         }
 
         .plan.featured {
-            border-color: rgba(79,110,247,0.3);
-            background: linear-gradient(180deg, rgba(79,110,247,0.06) 0%, var(--surface) 100%);
+            border-color: rgba(90,122,255,0.25);
+            background: linear-gradient(180deg, rgba(90,122,255,0.05) 0%, var(--surface) 100%);
         }
 
         .plan.featured::before {
@@ -532,7 +498,7 @@
             text-transform: uppercase;
             padding: 4px 10px;
             border-radius: 50px;
-            background: rgba(79,110,247,0.12);
+            background: rgba(90,122,255,0.1);
             color: var(--blue-light);
             margin-bottom: 12px;
         }
@@ -573,8 +539,8 @@
             width: 16px;
             height: 16px;
             border-radius: 5px;
-            background: rgba(61,214,200,0.1);
-            border: 1px solid rgba(61,214,200,0.15);
+            background: rgba(61,214,200,0.08);
+            border: 1px solid rgba(61,214,200,0.12);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -583,7 +549,7 @@
             color: var(--mint);
         }
 
-        /* ============ PROCESS ============ */
+        /* ==================== PROCESS STEPS ==================== */
         .step {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -591,18 +557,18 @@
             padding: 24px 18px;
             text-align: center;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
         }
 
         .step:hover {
-            transform: translateY(-6px) rotateX(3deg);
+            transform: translateY(-5px);
             box-shadow: 0 16px 30px rgba(0,0,0,0.3);
         }
 
         .step::after {
-            content: '→';
+            content: '\2192';
             position: absolute;
-            right: -10px;
+            right: -11px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-muted);
@@ -624,20 +590,20 @@
         }
 
         .step h3 { font-size: 0.82rem; font-weight: 600; margin-bottom: 6px; }
-        .step p { font-size: 0.7rem; color: var(--text-dim); line-height: 1.45; }
+        .step p { font-size: 0.7rem; color: var(--text-dim); line-height: 1.5; }
 
         .step-tag {
             display: inline-block;
             font-size: 0.55rem;
             font-weight: 600;
             color: var(--blue-light);
-            background: rgba(79,110,247,0.1);
+            background: rgba(90,122,255,0.08);
             padding: 2px 8px;
             border-radius: 50px;
             margin-top: 10px;
         }
 
-        /* ============ COMPARISON TABLE ============ */
+        /* ==================== COMPARISON TABLE ==================== */
         .comp-table {
             width: 100%;
             border-collapse: collapse;
@@ -655,7 +621,7 @@
         }
 
         .comp-table th {
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -664,11 +630,11 @@
         }
 
         .comp-table th:last-child {
-            background: rgba(79,110,247,0.06);
+            background: rgba(90,122,255,0.05);
             color: var(--blue-light);
         }
 
-        .comp-table td:last-child { background: rgba(79,110,247,0.02); }
+        .comp-table td:last-child { background: rgba(90,122,255,0.02); }
         .comp-table th:nth-child(2), .comp-table td:nth-child(2),
         .comp-table th:nth-child(3), .comp-table td:nth-child(3) { text-align: center; }
         .comp-table td:first-child { color: var(--text-dim); font-weight: 500; }
@@ -678,7 +644,7 @@
         .no { color: var(--text-muted); }
         .highlight { color: var(--blue-light); font-weight: 600; }
 
-        /* ============ PORTFOLIO ============ */
+        /* ==================== PORTFOLIO ==================== */
         .folio-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 14px; }
 
         .folio-card {
@@ -686,11 +652,11 @@
             border: 1px solid var(--border);
             border-radius: 16px;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
         }
 
         .folio-card:hover {
-            transform: translateY(-6px) rotateY(-2deg);
+            transform: translateY(-5px);
             box-shadow: 0 20px 50px rgba(0,0,0,0.4);
         }
 
@@ -698,7 +664,7 @@
             height: 220px;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(79,110,247,0.06), rgba(155,122,255,0.03));
+            background: linear-gradient(135deg, rgba(90,122,255,0.05), rgba(160,128,255,0.02));
         }
 
         .folio-browser {
@@ -732,15 +698,11 @@
         }
 
         .browser-body { padding: 14px; }
-        .browser-block { border-radius: 6px; margin-bottom: 8px; }
-        .bb-hero { height: 50px; }
-        .bb-blue { background: rgba(79,110,247,0.12); }
-        .bb-mint { background: rgba(61,214,200,0.12); }
-        .bb-coral { background: rgba(255,107,138,0.12); }
+        .bb-hero { height: 50px; border-radius: 6px; margin-bottom: 8px; }
+        .bb-blue { background: rgba(90,122,255,0.1); }
+        .bb-mint { background: rgba(61,214,200,0.1); }
+        .bb-coral { background: rgba(255,107,138,0.1); }
         .bb-line { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.04); margin-bottom: 5px; }
-        .bb-line:nth-child(1) { width: 60%; }
-        .bb-line:nth-child(2) { width: 80%; }
-        .bb-line:nth-child(3) { width: 40%; }
         .bb-cards { display: flex; gap: 5px; margin-top: 8px; }
         .bb-mini { flex: 1; height: 24px; border-radius: 4px; background: var(--surface); border: 1px solid var(--border); }
 
@@ -759,13 +721,12 @@
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         .folio-col { display: flex; flex-direction: column; gap: 14px; }
-
         .folio-card-sm .folio-screen { height: 150px; }
 
-        /* ============ GUARANTEE ============ */
+        /* ==================== GUARANTEE ==================== */
         .guar-icon {
             width: 56px; height: 56px; border-radius: 16px;
             display: flex; align-items: center; justify-content: center;
@@ -773,11 +734,11 @@
             border: 1px solid var(--border);
         }
 
-        .guar-icon-blue { background: rgba(79,110,247,0.08); }
-        .guar-icon-mint { background: rgba(61,214,200,0.08); }
-        .guar-icon-violet { background: rgba(155,122,255,0.08); }
+        .guar-icon-blue   { background: rgba(90,122,255,0.06); }
+        .guar-icon-mint   { background: rgba(61,214,200,0.06); }
+        .guar-icon-violet { background: rgba(160,128,255,0.06); }
 
-        /* ============ CONTACT ============ */
+        /* ==================== CONTACT ==================== */
         .contact-center { text-align: center; }
 
         .contact-row {
@@ -789,11 +750,11 @@
             padding: 14px 20px;
             background: var(--surface); border: 1px solid var(--border);
             border-radius: 14px; text-decoration: none; color: var(--text);
-            transition: all 0.3s;
+            transition: border-color 0.3s, transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
         }
 
         .contact-chip:hover {
-            border-color: rgba(79,110,247,0.3);
+            border-color: rgba(90,122,255,0.25);
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
@@ -803,9 +764,9 @@
             display: flex; align-items: center; justify-content: center; font-size: 1rem;
         }
 
-        .chip-icon-blue { background: rgba(79,110,247,0.12); }
-        .chip-icon-coral { background: rgba(255,107,138,0.12); }
-        .chip-icon-mint { background: rgba(61,214,200,0.12); }
+        .chip-icon-blue  { background: rgba(90,122,255,0.1); }
+        .chip-icon-coral { background: rgba(255,107,138,0.1); }
+        .chip-icon-mint  { background: rgba(61,214,200,0.1); }
 
         .chip-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
         .chip-value { font-size: 0.85rem; font-weight: 500; margin-top: 1px; }
@@ -816,13 +777,13 @@
             background: var(--grad-1);
             color: white; font-size: 0.9rem; font-weight: 600;
             border-radius: 60px; text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 4px 24px rgba(79,110,247,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 24px rgba(90,122,255,0.3);
         }
 
         .cta-btn:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 32px rgba(79,110,247,0.4);
+            box-shadow: 0 8px 32px rgba(90,122,255,0.4);
         }
 
         .cta-btn svg { width: 18px; height: 18px; }
@@ -836,9 +797,18 @@
             font-size: 0.72rem; color: var(--text-muted);
         }
 
-        /* ============ ANIMATIONS ============ */
-        .anim { opacity: 0; transform: translateY(24px); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-        .slide.active .anim { opacity: 1; transform: translateY(0); }
+        /* ==================== ANIMATIONS ==================== */
+        .anim {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+        }
+
+        .slide.active .anim {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .d1 { transition-delay: 0.05s; }
         .d2 { transition-delay: 0.1s; }
         .d3 { transition-delay: 0.15s; }
@@ -846,16 +816,31 @@
         .d5 { transition-delay: 0.25s; }
         .d6 { transition-delay: 0.3s; }
 
-        /* ============ RESPONSIVE ============ */
+        /* ==================== AMBIENT GLOW ==================== */
+        .ambient {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .ambient-1 { top: -200px; right: -100px; background: var(--blue); }
+        .ambient-2 { bottom: -200px; left: -100px; background: var(--violet); }
+
+        /* ==================== RESPONSIVE ==================== */
         @media (max-width: 1024px) {
-            .slide { padding: 40px 40px 80px; }
+            .slide { padding: 40px 40px 90px; }
             h1 { font-size: 3rem; }
             h2 { font-size: 2.2rem; }
             .grid-5 { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 768px) {
-            .slide { padding: 30px 20px 80px; }
+            .slide { padding: 30px 20px 90px; }
             h1 { font-size: 2.2rem; }
             h2 { font-size: 1.8rem; }
             .subtitle { font-size: 0.9rem; }
@@ -873,6 +858,10 @@
 </head>
 <body>
 
+    <!-- Ambient Glow -->
+    <div class="ambient ambient-1"></div>
+    <div class="ambient ambient-2"></div>
+
     <!-- Progress Bar -->
     <div class="progress-bar" id="progress"></div>
 
@@ -881,7 +870,6 @@
 
         <!-- SLIDE 1: COVER -->
         <div class="slide active" data-slide="0">
-            <!-- 3D Objects -->
             <div class="float-scene" style="top:12%;right:10%;">
                 <div class="float-obj">
                     <div class="cube-3d">
@@ -894,7 +882,7 @@
                     </div>
                 </div>
             </div>
-            <div class="float-scene" style="bottom:20%;left:8%;">
+            <div class="float-scene" style="bottom:22%;left:8%;">
                 <div class="float-obj" style="animation-delay:-3s;">
                     <div class="sphere-3d"></div>
                 </div>
@@ -936,12 +924,7 @@
         <div class="slide" data-slide="1">
             <div class="float-scene" style="top:10%;right:6%;">
                 <div class="float-obj" style="animation-delay:-2s;">
-                    <div class="pyramid-3d"></div>
-                </div>
-            </div>
-            <div class="float-scene" style="bottom:18%;left:4%;">
-                <div class="float-obj" style="animation-delay:-6s;">
-                    <div class="hex-3d"></div>
+                    <div class="sphere-3d" style="width:45px;height:45px;"></div>
                 </div>
             </div>
             <div class="slide-inner">
@@ -978,22 +961,24 @@
         <!-- SLIDE 3: SOLUTION -->
         <div class="slide" data-slide="2">
             <div class="float-scene" style="top:8%;right:4%;">
-                <div class="float-obj"><div class="sphere-3d" style="width:50px;height:50px;background:radial-gradient(circle at 30% 30%,rgba(61,214,200,0.15),rgba(79,110,247,0.03));border-color:rgba(61,214,200,0.1);"></div></div>
+                <div class="float-obj">
+                    <div class="sphere-3d" style="width:50px;height:50px;background:radial-gradient(circle at 30% 30%,rgba(61,214,200,0.14),rgba(90,122,255,0.02));border-color:rgba(61,214,200,0.08);"></div>
+                </div>
             </div>
             <div class="float-scene" style="bottom:12%;right:8%;">
-                <div class="ring-3d" style="width:60px;height:60px;border-color:rgba(155,122,255,0.12);animation-duration:18s;"></div>
+                <div class="ring-3d" style="width:60px;height:60px;border-color:rgba(160,128,255,0.1);animation-duration:18s;"></div>
             </div>
             <div class="slide-inner">
                 <span class="tag anim">The Solution</span>
                 <h2 class="anim d1">Everything You Need.<br><em>Nothing You Don't.</em></h2>
                 <p class="subtitle anim d2">Designed, built, hosted, and managed by Webly. All you do is share your business details.</p>
                 <div class="grid-3" style="margin-top:32px;">
-                    <div class="card anim d1"><div class="card-icon card-icon-blue">🌐</div><h3>Professional Website</h3><p>Modern design that looks stunning on every device. Built to impress your customers.</p></div>
-                    <div class="card anim d2"><div class="card-icon card-icon-mint">🔒</div><h3>Domain + Hosting + SSL</h3><p>Your own .com domain, fast hosting, and security — set up and managed by Webly.</p></div>
-                    <div class="card anim d3"><div class="card-icon card-icon-coral">💬</div><h3>WhatsApp Integration</h3><p>One tap and customers message you directly on WhatsApp. No missed leads.</p></div>
-                    <div class="card anim d4"><div class="card-icon card-icon-violet">🔍</div><h3>SEO Optimized</h3><p>Built to rank on Google. Your business shows up when customers search locally.</p></div>
-                    <div class="card anim d5"><div class="card-icon card-icon-blue">📄</div><h3>Monthly Landing Pages</h3><p>Webly builds dedicated pages for your offers and promotions every month.</p></div>
-                    <div class="card anim d6"><div class="card-icon card-icon-peach">🛠️</div><h3>Ongoing Updates</h3><p>Change prices, photos, or info — message Webly on WhatsApp, done within hours.</p></div>
+                    <div class="card anim d1"><div class="card-icon card-icon-blue">&#127760;</div><h3>Professional Website</h3><p>Modern design that looks stunning on every device. Built to impress your customers.</p></div>
+                    <div class="card anim d2"><div class="card-icon card-icon-mint">&#128274;</div><h3>Domain + Hosting + SSL</h3><p>Your own .com domain, fast hosting, and security — set up and managed by Webly.</p></div>
+                    <div class="card anim d3"><div class="card-icon card-icon-coral">&#128172;</div><h3>WhatsApp Integration</h3><p>One tap and customers message you directly on WhatsApp. No missed leads.</p></div>
+                    <div class="card anim d4"><div class="card-icon card-icon-violet">&#128269;</div><h3>SEO Optimized</h3><p>Built to rank on Google. Your business shows up when customers search locally.</p></div>
+                    <div class="card anim d5"><div class="card-icon card-icon-blue">&#128196;</div><h3>Monthly Landing Pages</h3><p>Webly builds dedicated pages for your offers and promotions every month.</p></div>
+                    <div class="card anim d6"><div class="card-icon card-icon-peach">&#128736;</div><h3>Ongoing Updates</h3><p>Change prices, photos, or info — message Webly on WhatsApp, done within hours.</p></div>
                 </div>
             </div>
         </div>
@@ -1002,16 +987,16 @@
         <div class="slide" data-slide="3">
             <div class="float-scene" style="bottom:10%;left:3%;">
                 <div class="float-obj" style="animation-delay:-4s;">
-                    <div class="donut-3d" style="width:45px;height:45px;border-width:8px;border-color:rgba(79,110,247,0.1);"></div>
+                    <div class="donut-3d" style="width:45px;height:45px;border-width:8px;border-color:rgba(90,122,255,0.08);"></div>
                 </div>
             </div>
             <div class="slide-inner">
-                <span class="tag anim">Plans & Pricing</span>
+                <span class="tag anim">Plans &amp; Pricing</span>
                 <h2 class="anim d1">Transparent Pricing.<br><em>No Surprises.</em></h2>
                 <div class="grid-3" style="margin-top:32px;">
                     <div class="plan anim d2">
                         <div class="plan-name">Starter</div>
-                        <div class="plan-for">Small shops & local services</div>
+                        <div class="plan-for">Small shops &amp; local services</div>
                         <div><span class="plan-price">&#8377;8,000</span> <span class="plan-price-note">setup</span></div>
                         <div class="plan-monthly">+ &#8377;1,500<span> /month</span></div>
                         <hr class="plan-divider">
@@ -1070,9 +1055,9 @@
             <div class="float-scene" style="top:10%;left:3%;">
                 <div class="float-obj" style="animation-delay:-1s;">
                     <div class="cube-3d" style="width:40px;height:40px;">
-                        <div class="cube-face cube-face-front" style="width:40px;height:40px;transform:translateZ(20px);border-color:rgba(61,214,200,0.15);background:rgba(61,214,200,0.05);"></div>
-                        <div class="cube-face cube-face-right" style="width:40px;height:40px;transform:translateX(20px) rotateY(90deg);border-color:rgba(61,214,200,0.1);background:rgba(61,214,200,0.03);"></div>
-                        <div class="cube-face cube-face-top" style="width:40px;height:40px;transform:translateY(-20px) rotateX(90deg);border-color:rgba(61,214,200,0.12);background:rgba(61,214,200,0.04);"></div>
+                        <div class="cube-face cube-face-front" style="width:40px;height:40px;transform:translateZ(20px);border-color:rgba(61,214,200,0.12);background:rgba(61,214,200,0.04);"></div>
+                        <div class="cube-face cube-face-right" style="width:40px;height:40px;transform:translateX(20px) rotateY(90deg);border-color:rgba(61,214,200,0.08);background:rgba(61,214,200,0.02);"></div>
+                        <div class="cube-face cube-face-top" style="width:40px;height:40px;transform:translateY(-20px) rotateX(90deg);border-color:rgba(61,214,200,0.1);background:rgba(61,214,200,0.03);"></div>
                     </div>
                 </div>
             </div>
@@ -1084,7 +1069,7 @@
                     <div class="step anim d1">
                         <div class="step-num">01</div>
                         <h3>Share Details</h3>
-                        <p>Send Webly your logo, photos & info on WhatsApp</p>
+                        <p>Send Webly your logo, photos &amp; info on WhatsApp</p>
                         <span class="step-tag">Day 1-2</span>
                     </div>
                     <div class="step anim d2">
@@ -1108,7 +1093,7 @@
                     <div class="step anim d5">
                         <div class="step-num">05</div>
                         <h3>Monthly Care</h3>
-                        <p>Updates, landing pages & hosting managed</p>
+                        <p>Updates, landing pages &amp; hosting managed</p>
                         <span class="step-tag">Ongoing</span>
                     </div>
                 </div>
@@ -1159,7 +1144,7 @@
                             <div class="folio-browser">
                                 <div class="browser-bar"><div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div><div class="browser-url">21stcastle.com</div></div>
                                 <div class="browser-body">
-                                    <div class="browser-block bb-hero bb-blue"></div>
+                                    <div class="bb-hero bb-blue"></div>
                                     <div class="bb-line" style="width:60%"></div>
                                     <div class="bb-line" style="width:80%"></div>
                                     <div class="bb-line" style="width:40%"></div>
@@ -1170,16 +1155,16 @@
                         <div class="folio-info">
                             <div class="folio-type">Real Estate Developer</div>
                             <div class="folio-name">21st Castle Developers</div>
-                            <div class="folio-desc">Premium apartments & villas — Sarjapur Road, Bangalore</div>
+                            <div class="folio-desc">Premium apartments &amp; villas — Sarjapur Road, Bangalore</div>
                             <div class="folio-live"><div class="pulse-dot"></div> Live</div>
                         </div>
                     </div>
                     <div class="folio-col">
                         <div class="folio-card folio-card-sm">
-                            <div class="folio-screen" style="background:linear-gradient(135deg,rgba(61,214,200,0.06),rgba(79,110,247,0.03));">
+                            <div class="folio-screen" style="background:linear-gradient(135deg,rgba(61,214,200,0.05),rgba(90,122,255,0.02));">
                                 <div class="folio-browser">
                                     <div class="browser-bar"><div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div><div class="browser-url">yourbusiness.com</div></div>
-                                    <div class="browser-body"><div class="browser-block bb-hero bb-mint"></div><div class="bb-line" style="width:60%"></div><div class="bb-line" style="width:45%"></div></div>
+                                    <div class="browser-body"><div class="bb-hero bb-mint"></div><div class="bb-line" style="width:60%"></div><div class="bb-line" style="width:45%"></div></div>
                                 </div>
                             </div>
                             <div class="folio-info" style="padding:14px 16px;">
@@ -1188,10 +1173,10 @@
                             </div>
                         </div>
                         <div class="folio-card folio-card-sm">
-                            <div class="folio-screen" style="background:linear-gradient(135deg,rgba(255,107,138,0.06),rgba(255,176,122,0.03));">
+                            <div class="folio-screen" style="background:linear-gradient(135deg,rgba(255,107,138,0.05),rgba(255,176,122,0.02));">
                                 <div class="folio-browser">
                                     <div class="browser-bar"><div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div><div class="browser-url">yourbrand.in</div></div>
-                                    <div class="browser-body"><div class="browser-block bb-hero bb-coral"></div><div class="bb-line" style="width:70%"></div><div class="bb-line" style="width:50%"></div></div>
+                                    <div class="browser-body"><div class="bb-hero bb-coral"></div><div class="bb-line" style="width:70%"></div><div class="bb-line" style="width:50%"></div></div>
                                 </div>
                             </div>
                             <div class="folio-info" style="padding:14px 16px;">
@@ -1207,7 +1192,7 @@
         <!-- SLIDE 8: GUARANTEE -->
         <div class="slide" data-slide="7">
             <div class="float-scene" style="top:15%;right:5%;">
-                <div class="ring-3d" style="width:70px;height:70px;border-color:rgba(79,110,247,0.1);animation-duration:20s;"></div>
+                <div class="ring-3d" style="width:70px;height:70px;border-color:rgba(90,122,255,0.08);animation-duration:20s;"></div>
             </div>
             <div class="float-scene" style="bottom:20%;left:5%;">
                 <div class="float-obj" style="animation-delay:-3s;">
@@ -1224,17 +1209,17 @@
                 <p class="subtitle anim d2">Webly earns trust through transparency, not just words.</p>
                 <div class="grid-3" style="margin-top:36px;">
                     <div class="card anim d3" style="text-align:center;">
-                        <div class="guar-icon guar-icon-blue">🛡️</div>
+                        <div class="guar-icon guar-icon-blue">&#128737;</div>
                         <h3>10-Day Money Back</h3>
                         <p>If Webly doesn't deliver within 10 working days, full refund of your advance. No questions.</p>
                     </div>
                     <div class="card anim d4" style="text-align:center;">
-                        <div class="guar-icon guar-icon-mint">👁️</div>
+                        <div class="guar-icon guar-icon-mint">&#128065;</div>
                         <h3>See Before You Pay</h3>
                         <p>You see the complete website before paying the remaining 50%. Pay only when satisfied.</p>
                     </div>
                     <div class="card anim d5" style="text-align:center;">
-                        <div class="guar-icon guar-icon-violet">📱</div>
+                        <div class="guar-icon guar-icon-violet">&#128241;</div>
                         <h3>Daily Updates</h3>
                         <p>WhatsApp update every day during the build. No silence, no guessing — total transparency.</p>
                     </div>
@@ -1258,15 +1243,15 @@
                 <p class="subtitle anim d2" style="max-width:460px;margin:0 auto 40px;">No pressure, no commitment. Just a quick chat about what your business needs.</p>
                 <div class="contact-row anim d3">
                     <a href="tel:+919663598135" class="contact-chip">
-                        <div class="chip-icon chip-icon-blue">📞</div>
+                        <div class="chip-icon chip-icon-blue">&#128222;</div>
                         <div><div class="chip-label">Call</div><div class="chip-value">+91 96635 98135</div></div>
                     </a>
                     <a href="mailto:vinaykumarperson99@gmail.com" class="contact-chip">
-                        <div class="chip-icon chip-icon-coral">✉️</div>
+                        <div class="chip-icon chip-icon-coral">&#9993;</div>
                         <div><div class="chip-label">Email</div><div class="chip-value">vinaykumarperson99@gmail.com</div></div>
                     </a>
                     <a href="https://wa.me/919663598135?text=Hi%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business." target="_blank" class="contact-chip">
-                        <div class="chip-icon chip-icon-mint">💬</div>
+                        <div class="chip-icon chip-icon-mint">&#128172;</div>
                         <div><div class="chip-label">WhatsApp</div><div class="chip-value">+91 96635 98135</div></div>
                     </a>
                 </div>
@@ -1275,9 +1260,9 @@
                     Message Webly on WhatsApp
                 </a>
                 <div class="trust-row anim d5">
-                    <div class="trust-item">📍 HSR Layout, Bangalore</div>
-                    <div class="trust-item">⚡ Reply within 2 hours</div>
-                    <div class="trust-item">🛡️ 10-day money back guarantee</div>
+                    <div class="trust-item">&#128205; HSR Layout, Bangalore</div>
+                    <div class="trust-item">&#9889; Reply within 2 hours</div>
+                    <div class="trust-item">&#128737; 10-day money back guarantee</div>
                 </div>
             </div>
         </div>
@@ -1314,11 +1299,8 @@
         function goTo(index) {
             if (index === current || index < 0 || index >= totalSlides) return;
 
-            const prev = slides[current];
-            const next = slides[index];
-
-            prev.classList.remove('active');
-            next.classList.add('active');
+            slides[current].classList.remove('active');
+            slides[index].classList.add('active');
             current = index;
 
             // Update dots
@@ -1339,8 +1321,14 @@
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
-            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); goTo(current - 1); }
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                goTo(current + 1);
+            }
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                goTo(current - 1);
+            }
         });
 
         // Mouse wheel navigation
@@ -1350,12 +1338,14 @@
             wheelLock = true;
             if (e.deltaY > 0) goTo(current + 1);
             else goTo(current - 1);
-            setTimeout(() => wheelLock = false, 800);
+            setTimeout(() => { wheelLock = false; }, 800);
         });
 
         // Touch swipe
         let touchStartY = 0;
-        document.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; });
+        document.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        });
         document.addEventListener('touchend', (e) => {
             const diff = touchStartY - e.changedTouches[0].clientY;
             if (Math.abs(diff) > 50) {
@@ -1364,24 +1354,24 @@
             }
         });
 
-        // 3D tilt on cards
+        // 3D tilt on hover (desktop only)
         if (window.matchMedia('(hover:hover) and (min-width:1024px)').matches) {
             document.querySelectorAll('.card, .plan, .step, .folio-card').forEach(card => {
                 card.addEventListener('mousemove', (e) => {
                     const r = card.getBoundingClientRect();
                     const x = (e.clientX - r.left) / r.width - 0.5;
                     const y = (e.clientY - r.top) / r.height - 0.5;
-                    card.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateY(-6px)`;
+                    card.style.transform = 'perspective(600px) rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg) translateY(-5px)';
                     card.style.transition = 'transform 0.1s';
                 });
                 card.addEventListener('mouseleave', () => {
                     card.style.transform = '';
-                    card.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    card.style.transition = '';
                 });
             });
         }
 
-        // Init progress
+        // Init progress bar
         progress.style.width = (1 / totalSlides * 100) + '%';
     </script>
 
