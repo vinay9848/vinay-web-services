@@ -3,1758 +3,1393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webly — Professional Website Solutions for Bangalore Businesses</title>
+    <title>Webly — Pitch Deck</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
         :root {
-            --bg: #06060a;
-            --bg-card: rgba(255, 255, 255, 0.04);
-            --bg-glass: rgba(255, 255, 255, 0.06);
-            --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 255, 255, 0.15);
-            --accent-1: #6c5ce7;
-            --accent-2: #a29bfe;
-            --accent-3: #fd79a8;
-            --accent-4: #00cec9;
-            --gradient-main: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 50%, #fd79a8 100%);
-            --gradient-text: linear-gradient(135deg, #a29bfe 0%, #fd79a8 50%, #ffeaa7 100%);
-            --gradient-card: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(253, 121, 168, 0.05) 100%);
-            --white: #ffffff;
-            --gray-100: #f0f0f5;
-            --gray-300: #b0b0c0;
-            --gray-400: #8888a0;
-            --gray-500: #666680;
-            --green: #00b894;
-            --red: #ff6b6b;
+            --bg: #0c0c10;
+            --surface: #16161d;
+            --surface-2: #1e1e28;
+            --border: rgba(255,255,255,0.06);
+            --text: #e8e6f0;
+            --text-dim: #7a7890;
+            --text-muted: #4e4c60;
+            --blue: #4f6ef7;
+            --blue-light: #7b93ff;
+            --mint: #3dd6c8;
+            --coral: #ff6b8a;
+            --peach: #ffb07a;
+            --violet: #9b7aff;
+            --grad-1: linear-gradient(135deg, #4f6ef7, #9b7aff);
+            --grad-2: linear-gradient(135deg, #3dd6c8, #4f6ef7);
+            --grad-3: linear-gradient(135deg, #ff6b8a, #ffb07a);
         }
 
-        html {
-            scroll-behavior: smooth;
-            scroll-snap-type: y mandatory;
-        }
-
-        body {
+        html, body {
+            height: 100%;
+            overflow: hidden;
             font-family: 'Inter', sans-serif;
             background: var(--bg);
-            color: var(--white);
-            overflow-x: hidden;
+            color: var(--text);
         }
 
-        /* ========== 3D FLOATING SHAPES ========== */
-        .floating-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* ============ PRESENTATION CONTAINER ============ */
+        .deck {
             width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
+            height: 100vh;
+            position: relative;
         }
 
-        .shape-blob {
+        .slide {
             position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            animation: floatBlob 20s ease-in-out infinite;
-        }
-
-        .shape-blob-1 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--accent-1) 0%, transparent 70%);
-            top: -10%;
-            right: -10%;
-            animation-delay: 0s;
-        }
-
-        .shape-blob-2 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, var(--accent-3) 0%, transparent 70%);
-            bottom: 20%;
-            left: -8%;
-            animation-delay: -7s;
-        }
-
-        .shape-blob-3 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, var(--accent-4) 0%, transparent 70%);
-            top: 40%;
-            right: 15%;
-            animation-delay: -14s;
-        }
-
-        @keyframes floatBlob {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(30px, -40px) scale(1.05); }
-            50% { transform: translate(-20px, 20px) scale(0.95); }
-            75% { transform: translate(15px, 35px) scale(1.03); }
-        }
-
-        /* ========== GRID PATTERN ========== */
-        .grid-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* ========== NAVIGATION ========== */
-        .nav {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-            padding: 10px 12px;
+            inset: 0;
             display: flex;
             align-items: center;
-            gap: 6px;
-            background: rgba(6, 6, 10, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 60px;
+            justify-content: center;
+            padding: 60px 80px;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.96) translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
         }
 
-        .nav-brand {
-            padding: 8px 18px;
-            font-size: 0.85rem;
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1) translateY(0);
+            z-index: 2;
+        }
+
+        .slide.exit-up {
+            opacity: 0;
+            transform: scale(0.96) translateY(-30px);
+        }
+
+        .slide-inner {
+            max-width: 1060px;
+            width: 100%;
+        }
+
+        /* ============ BOTTOM BAR (Presentation Controls) ============ */
+        .controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            z-index: 100;
+        }
+
+        .controls-brand {
             font-weight: 700;
-            letter-spacing: 1px;
-            background: var(--gradient-main);
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            background: var(--grad-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .nav-dot {
+        .controls-center {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .controls-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .ctrl-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            border: 1.5px solid var(--gray-500);
-            background: transparent;
+            background: var(--text-muted);
+            border: none;
             cursor: pointer;
             transition: all 0.3s;
             padding: 0;
         }
 
-        .nav-dot.active {
-            background: var(--accent-2);
-            border-color: var(--accent-2);
-            box-shadow: 0 0 10px rgba(162, 155, 254, 0.5);
-            transform: scale(1.3);
+        .ctrl-dot.active {
+            background: var(--blue);
+            box-shadow: 0 0 12px rgba(79,110,247,0.5);
+            transform: scale(1.4);
         }
 
-        .nav-dot:hover {
-            border-color: var(--accent-2);
-        }
-
-        /* ========== SLIDES ========== */
-        .slide {
-            min-height: 100vh;
+        .ctrl-arrow {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text);
+            font-size: 1rem;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 100px 60px;
-            scroll-snap-align: start;
-            position: relative;
-            z-index: 1;
+            transition: all 0.2s;
         }
 
-        .slide-content {
-            max-width: 1100px;
-            width: 100%;
+        .ctrl-arrow:hover {
+            background: var(--blue);
+            border-color: var(--blue);
         }
 
-        .slide-tag {
+        .controls-counter {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-variant-numeric: tabular-nums;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        /* ============ PROGRESS BAR ============ */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--grad-1);
+            z-index: 101;
+            transition: width 0.4s ease;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* ============ TYPOGRAPHY ============ */
+        .tag {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.72rem;
+            font-size: 0.65rem;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
-            color: var(--accent-2);
-            margin-bottom: 28px;
-        }
-
-        .slide-tag::before {
-            content: '';
-            width: 20px;
-            height: 2px;
-            background: var(--gradient-main);
-            border-radius: 2px;
-        }
-
-        .slide-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: 3.8rem;
-            font-weight: 400;
-            line-height: 1.15;
+            color: var(--blue-light);
             margin-bottom: 20px;
+        }
+
+        .tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--blue);
+        }
+
+        h1, h2 {
+            font-family: 'Instrument Serif', serif;
+            font-weight: 400;
+            line-height: 1.1;
             letter-spacing: -1px;
         }
 
-        .slide-title em {
+        h1 { font-size: 4.2rem; margin-bottom: 20px; }
+        h2 { font-size: 3rem; margin-bottom: 16px; }
+
+        h1 em, h2 em {
             font-style: italic;
-            background: var(--gradient-text);
+            background: var(--grad-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .slide-subtitle {
+        .subtitle {
             font-size: 1.05rem;
-            color: var(--gray-400);
-            line-height: 1.7;
-            max-width: 580px;
-            margin-bottom: 48px;
+            color: var(--text-dim);
+            line-height: 1.65;
+            max-width: 520px;
             font-weight: 300;
         }
 
-        /* ========== GLASS CARD ========== */
-        .glass {
-            background: var(--bg-glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* ============ 3D FLOATING OBJECTS ============ */
+        .float-scene {
+            perspective: 800px;
+            position: absolute;
+            pointer-events: none;
         }
 
-        .glass:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-6px);
-            box-shadow: 0 20px 60px rgba(108, 92, 231, 0.08);
+        .float-obj {
+            transform-style: preserve-3d;
+            animation: float3d 8s ease-in-out infinite;
         }
 
-        /* ========== 3D CARD ========== */
-        .card-3d {
-            perspective: 1000px;
+        @keyframes float3d {
+            0%, 100% { transform: rotateX(15deg) rotateY(-15deg) translateZ(0); }
+            25% { transform: rotateX(20deg) rotateY(-10deg) translateZ(10px); }
+            50% { transform: rotateX(10deg) rotateY(-20deg) translateZ(20px); }
+            75% { transform: rotateX(18deg) rotateY(-8deg) translateZ(5px); }
         }
 
-        .card-3d-inner {
-            transition: transform 0.5s;
+        .cube-3d {
+            width: 60px;
+            height: 60px;
+            position: relative;
             transform-style: preserve-3d;
         }
 
-        /* ========== SLIDE 1: COVER ========== */
-        .slide-cover {
-            text-align: center;
+        .cube-face {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(79,110,247,0.2);
+            border-radius: 10px;
         }
+
+        .cube-face-front  { transform: translateZ(30px); background: rgba(79,110,247,0.06); }
+        .cube-face-back   { transform: translateZ(-30px) rotateY(180deg); background: rgba(79,110,247,0.03); }
+        .cube-face-left   { transform: translateX(-30px) rotateY(-90deg); background: rgba(155,122,255,0.05); }
+        .cube-face-right  { transform: translateX(30px) rotateY(90deg); background: rgba(155,122,255,0.05); }
+        .cube-face-top    { transform: translateY(-30px) rotateX(90deg); background: rgba(61,214,200,0.06); }
+        .cube-face-bottom { transform: translateY(30px) rotateX(-90deg); background: rgba(61,214,200,0.03); }
+
+        .sphere-3d {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(155,122,255,0.15), rgba(79,110,247,0.03));
+            border: 1px solid rgba(155,122,255,0.12);
+            box-shadow: 0 0 40px rgba(155,122,255,0.08), inset 0 0 30px rgba(155,122,255,0.05);
+        }
+
+        .ring-3d {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid rgba(61,214,200,0.15);
+            transform-style: preserve-3d;
+            animation: spinRing 12s linear infinite;
+        }
+
+        @keyframes spinRing {
+            to { transform: rotateX(60deg) rotateZ(360deg); }
+        }
+
+        .pyramid-3d {
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid rgba(255,107,138,0.1);
+            filter: drop-shadow(0 0 15px rgba(255,107,138,0.1));
+        }
+
+        .donut-3d {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 12px solid rgba(255,176,122,0.12);
+            box-shadow: 0 0 25px rgba(255,176,122,0.06);
+            animation: spinDonut 15s linear infinite;
+        }
+
+        @keyframes spinDonut {
+            to { transform: rotateX(45deg) rotateY(360deg); }
+        }
+
+        .hex-3d {
+            width: 50px;
+            height: 28px;
+            background: rgba(79,110,247,0.08);
+            position: relative;
+            border-left: 1px solid rgba(79,110,247,0.15);
+            border-right: 1px solid rgba(79,110,247,0.15);
+        }
+
+        .hex-3d::before, .hex-3d::after {
+            content: '';
+            position: absolute;
+            left: -1px;
+            width: 0;
+            border-left: 26px solid transparent;
+            border-right: 26px solid transparent;
+        }
+
+        .hex-3d::before {
+            top: -14px;
+            border-bottom: 14px solid rgba(79,110,247,0.08);
+        }
+
+        .hex-3d::after {
+            bottom: -14px;
+            border-top: 14px solid rgba(79,110,247,0.08);
+        }
+
+        /* ============ SLIDE 1: COVER ============ */
+        .cover-center { text-align: center; }
 
         .cover-logo {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding: 14px 32px;
-            background: var(--bg-glass);
-            backdrop-filter: blur(20px);
+            gap: 10px;
+            padding: 10px 24px 10px 10px;
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 60px;
-            margin-bottom: 48px;
+            margin-bottom: 40px;
         }
 
         .cover-logo-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: var(--gradient-main);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--grad-1);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: white;
         }
 
-        .cover-logo-text {
-            font-size: 1rem;
+        .cover-logo-name {
             font-weight: 600;
-            letter-spacing: 0.5px;
+            font-size: 0.9rem;
         }
 
-        .cover-logo-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 10px rgba(0, 184, 148, 0.5);
+        .cover-subtitle {
+            max-width: 500px;
+            margin: 0 auto 48px;
         }
 
-        .cover-logo-status {
-            font-size: 0.7rem;
-            color: var(--green);
-            font-weight: 500;
-        }
-
-        .slide-cover .slide-title {
-            font-size: 5rem;
-            max-width: 900px;
-            margin: 0 auto 24px;
-        }
-
-        .slide-cover .slide-subtitle {
-            margin: 0 auto 56px;
-            max-width: 520px;
-            font-size: 1.1rem;
-        }
-
-        .cover-stats {
+        .cover-metrics {
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 48px;
+            margin-top: 56px;
         }
 
-        .cover-stat {
-            padding: 24px 36px;
+        .metric {
             text-align: center;
         }
 
-        .cover-stat-number {
+        .metric-value {
             font-family: 'Instrument Serif', serif;
-            font-size: 2.8rem;
-            font-weight: 400;
-            background: var(--gradient-text);
+            font-size: 2.6rem;
+            background: var(--grad-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1;
         }
 
-        .cover-stat-label {
-            font-size: 0.72rem;
-            color: var(--gray-500);
-            margin-top: 8px;
-            letter-spacing: 1px;
+        .metric-label {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             font-weight: 500;
         }
 
-        .cover-location {
-            margin-top: 48px;
-            font-size: 0.8rem;
-            color: var(--gray-500);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+        /* ============ CARD SYSTEM ============ */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* ========== SLIDE 2: PROBLEM ========== */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
+        .card:hover {
+            border-color: rgba(79,110,247,0.2);
+            transform: translateY(-6px) rotateX(2deg) rotateY(-1deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(79,110,247,0.05);
         }
 
-        .problem-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .problem-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: 22px 24px;
-        }
-
-        .problem-icon-wrap {
+        .card-icon {
             width: 44px;
             height: 44px;
             border-radius: 12px;
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 107, 107, 0.05));
-            border: 1px solid rgba(255, 107, 107, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .problem-text {
-            font-size: 0.9rem;
-            color: var(--gray-300);
-            line-height: 1.55;
-        }
-
-        .problem-text strong {
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        .problem-stat-card {
-            padding: 56px 40px;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(253, 121, 168, 0.05));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .problem-stat-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(108, 92, 231, 0.05), transparent, rgba(253, 121, 168, 0.05), transparent);
-            animation: rotateBg 15s linear infinite;
-        }
-
-        @keyframes rotateBg {
-            to { transform: rotate(360deg); }
-        }
-
-        .problem-stat-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .problem-stat-big {
-            font-family: 'Instrument Serif', serif;
-            font-size: 6rem;
-            font-weight: 400;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-        }
-
-        .problem-stat-text {
-            font-size: 1rem;
-            color: var(--gray-400);
-            margin-top: 16px;
-            line-height: 1.6;
-        }
-
-        .problem-stat-source {
-            font-size: 0.7rem;
-            color: var(--gray-500);
-            margin-top: 20px;
-            font-style: italic;
-        }
-
-        /* ========== SLIDE 3: SOLUTION ========== */
-        .solution-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .solution-card {
-            padding: 32px 26px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .solution-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--gradient-main);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .solution-card:hover::before {
-            opacity: 1;
-        }
-
-        .solution-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            border: 1px solid var(--border);
-        }
-
-        .solution-icon-purple { background: linear-gradient(135deg, rgba(108, 92, 231, 0.15), rgba(108, 92, 231, 0.05)); }
-        .solution-icon-pink { background: linear-gradient(135deg, rgba(253, 121, 168, 0.15), rgba(253, 121, 168, 0.05)); }
-        .solution-icon-teal { background: linear-gradient(135deg, rgba(0, 206, 201, 0.15), rgba(0, 206, 201, 0.05)); }
-
-        .solution-card h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .solution-card p {
-            font-size: 0.82rem;
-            color: var(--gray-400);
-            line-height: 1.6;
-        }
-
-        /* ========== SLIDE 4: PLANS ========== */
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            align-items: start;
-        }
-
-        .plan-card {
-            padding: 36px 28px;
-            position: relative;
-        }
-
-        .plan-card.popular {
-            border-color: rgba(108, 92, 231, 0.3);
-            background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(253, 121, 168, 0.04));
-            box-shadow: 0 0 40px rgba(108, 92, 231, 0.08);
-        }
-
-        .plan-popular-tag {
-            position: absolute;
-            top: -1px;
-            left: 28px;
-            right: 28px;
-            height: 3px;
-            background: var(--gradient-main);
-            border-radius: 0 0 3px 3px;
-        }
-
-        .plan-badge {
-            display: inline-block;
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 5px 12px;
-            border-radius: 50px;
-            background: linear-gradient(135deg, rgba(108, 92, 231, 0.2), rgba(253, 121, 168, 0.1));
-            color: var(--accent-2);
-            margin-bottom: 16px;
-        }
-
-        .plan-name {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.6rem;
-            margin-bottom: 4px;
-        }
-
-        .plan-for {
-            font-size: 0.78rem;
-            color: var(--gray-500);
-            margin-bottom: 28px;
-        }
-
-        .plan-price-row {
-            margin-bottom: 6px;
-        }
-
-        .plan-price {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2.4rem;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .plan-price-label {
-            font-size: 0.75rem;
-            color: var(--gray-500);
-        }
-
-        .plan-monthly {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 28px;
-        }
-
-        .plan-monthly span {
-            font-size: 0.75rem;
-            color: var(--gray-500);
-            font-weight: 400;
-        }
-
-        .plan-divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 0 0 24px;
-        }
-
-        .plan-features {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 11px;
-        }
-
-        .plan-features li {
-            font-size: 0.8rem;
-            color: var(--gray-300);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .plan-check {
-            width: 18px;
-            height: 18px;
-            border-radius: 6px;
-            background: linear-gradient(135deg, rgba(0, 184, 148, 0.15), rgba(0, 184, 148, 0.05));
-            border: 1px solid rgba(0, 184, 148, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 0.6rem;
-            color: var(--green);
-        }
-
-        /* ========== SLIDE 5: PROCESS ========== */
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
-        }
-
-        .process-card {
-            padding: 28px 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        .process-card::after {
-            content: '';
-            position: absolute;
-            top: 50px;
-            right: -8px;
-            width: 16px;
-            height: 2px;
-            background: var(--gradient-main);
-            opacity: 0.3;
-        }
-
-        .process-card:last-child::after {
-            display: none;
-        }
-
-        .process-number {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2.2rem;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            margin-bottom: 16px;
-        }
-
-        .process-icon-wrap {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            background: var(--bg-glass);
-            border: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
-            margin: 0 auto 16px;
+            margin-bottom: 16px;
         }
 
-        .process-card h3 {
-            font-size: 0.88rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+        .card-icon-blue { background: rgba(79,110,247,0.12); border: 1px solid rgba(79,110,247,0.1); }
+        .card-icon-mint { background: rgba(61,214,200,0.12); border: 1px solid rgba(61,214,200,0.1); }
+        .card-icon-coral { background: rgba(255,107,138,0.12); border: 1px solid rgba(255,107,138,0.1); }
+        .card-icon-violet { background: rgba(155,122,255,0.12); border: 1px solid rgba(155,122,255,0.1); }
+        .card-icon-peach { background: rgba(255,176,122,0.12); border: 1px solid rgba(255,176,122,0.1); }
+
+        .card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+        .card p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.55; }
+
+        /* ============ GRIDS ============ */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+
+        /* ============ PROBLEM SLIDE ============ */
+        .problem-item {
+            display: flex;
+            gap: 14px;
+            padding: 18px 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 10px;
         }
 
-        .process-card p {
-            font-size: 0.75rem;
-            color: var(--gray-400);
-            line-height: 1.55;
+        .problem-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(255,107,138,0.1);
+            border: 1px solid rgba(255,107,138,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--coral);
+            flex-shrink: 0;
         }
 
-        .process-days-tag {
-            display: inline-block;
-            font-size: 0.6rem;
-            font-weight: 600;
-            color: var(--accent-2);
-            background: rgba(162, 155, 254, 0.1);
-            padding: 3px 10px;
-            border-radius: 50px;
-            margin-top: 12px;
-            letter-spacing: 0.5px;
-        }
+        .problem-text { font-size: 0.85rem; color: var(--text-dim); line-height: 1.5; }
+        .problem-text strong { color: var(--text); }
 
-        /* ========== SLIDE 6: COMPARISON ========== */
-        .comparison-wrapper {
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 20px;
+            padding: 48px;
+            text-align: center;
+            position: relative;
             overflow: hidden;
         }
 
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: var(--grad-3);
+            border-radius: 2px;
         }
 
-        .comparison-table th,
-        .comparison-table td {
-            padding: 18px 24px;
-            text-align: left;
-            font-size: 0.85rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .comparison-table th {
-            font-size: 0.68rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gray-500);
-            padding: 20px 24px;
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .comparison-table th:last-child {
-            background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(253, 121, 168, 0.04));
-        }
-
-        .comparison-table td:last-child {
-            background: rgba(108, 92, 231, 0.03);
-        }
-
-        .comparison-table th:nth-child(2),
-        .comparison-table th:nth-child(3) { text-align: center; }
-
-        .comparison-table td:nth-child(2),
-        .comparison-table td:nth-child(3) { text-align: center; }
-
-        .comparison-table td:first-child {
-            color: var(--gray-300);
-            font-weight: 500;
-        }
-
-        .comp-yes {
-            color: var(--green);
-            font-weight: 600;
-            font-size: 0.82rem;
-        }
-
-        .comp-no {
-            color: var(--gray-500);
-            font-size: 0.82rem;
-        }
-
-        .comp-vk {
-            color: var(--accent-2);
-            font-weight: 600;
-            background: var(--gradient-text);
+        .stat-big {
+            font-family: 'Instrument Serif', serif;
+            font-size: 7rem;
+            line-height: 1;
+            background: var(--grad-3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .comparison-table tr:last-child td {
-            border-bottom: none;
+        .stat-label { font-size: 0.95rem; color: var(--text-dim); margin-top: 12px; line-height: 1.5; }
+        .stat-source { font-size: 0.65rem; color: var(--text-muted); margin-top: 16px; font-style: italic; }
+
+        /* ============ PLANS ============ */
+        .plan {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 24px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* ========== SLIDE 7: PORTFOLIO ========== */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 16px;
+        .plan:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.3);
         }
 
-        .portfolio-card {
+        .plan.featured {
+            border-color: rgba(79,110,247,0.3);
+            background: linear-gradient(180deg, rgba(79,110,247,0.06) 0%, var(--surface) 100%);
+        }
+
+        .plan.featured::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            height: 3px;
+            background: var(--grad-1);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .plan-badge {
+            display: inline-block;
+            font-size: 0.55rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 50px;
+            background: rgba(79,110,247,0.12);
+            color: var(--blue-light);
+            margin-bottom: 12px;
+        }
+
+        .plan-name {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            margin-bottom: 2px;
+        }
+
+        .plan-for { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 24px; }
+
+        .plan-price {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.2rem;
+            background: var(--grad-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .plan-price-note { font-size: 0.7rem; color: var(--text-muted); }
+        .plan-monthly { font-size: 0.9rem; font-weight: 600; margin: 4px 0 20px; }
+        .plan-monthly span { font-size: 0.72rem; color: var(--text-muted); font-weight: 400; }
+
+        .plan-divider { border: none; border-top: 1px solid var(--border); margin: 0 0 16px; }
+
+        .plan-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .plan-list li {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .check {
+            width: 16px;
+            height: 16px;
+            border-radius: 5px;
+            background: rgba(61,214,200,0.1);
+            border: 1px solid rgba(61,214,200,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.55rem;
+            color: var(--mint);
+        }
+
+        /* ============ PROCESS ============ */
+        .step {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 18px;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .step:hover {
+            transform: translateY(-6px) rotateX(3deg);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.3);
+        }
+
+        .step::after {
+            content: '→';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            z-index: 1;
+        }
+
+        .step:last-child::after { display: none; }
+
+        .step-num {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.8rem;
+            background: var(--grad-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .step h3 { font-size: 0.82rem; font-weight: 600; margin-bottom: 6px; }
+        .step p { font-size: 0.7rem; color: var(--text-dim); line-height: 1.45; }
+
+        .step-tag {
+            display: inline-block;
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: var(--blue-light);
+            background: rgba(79,110,247,0.1);
+            padding: 2px 8px;
+            border-radius: 50px;
+            margin-top: 10px;
+        }
+
+        /* ============ COMPARISON TABLE ============ */
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border-radius: 16px;
             overflow: hidden;
-            cursor: pointer;
+            border: 1px solid var(--border);
         }
 
-        .portfolio-card:hover .portfolio-preview {
-            transform: scale(1.02);
+        .comp-table th, .comp-table td {
+            padding: 14px 20px;
+            font-size: 0.82rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
         }
 
-        .portfolio-preview {
-            height: 240px;
+        .comp-table th {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            background: var(--surface-2);
+        }
+
+        .comp-table th:last-child {
+            background: rgba(79,110,247,0.06);
+            color: var(--blue-light);
+        }
+
+        .comp-table td:last-child { background: rgba(79,110,247,0.02); }
+        .comp-table th:nth-child(2), .comp-table td:nth-child(2),
+        .comp-table th:nth-child(3), .comp-table td:nth-child(3) { text-align: center; }
+        .comp-table td:first-child { color: var(--text-dim); font-weight: 500; }
+        .comp-table tr:last-child td { border-bottom: none; }
+
+        .yes { color: var(--mint); font-weight: 600; }
+        .no { color: var(--text-muted); }
+        .highlight { color: var(--blue-light); font-weight: 600; }
+
+        /* ============ PORTFOLIO ============ */
+        .folio-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 14px; }
+
+        .folio-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .folio-card:hover {
+            transform: translateY(-6px) rotateY(-2deg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        .folio-screen {
+            height: 220px;
             position: relative;
             overflow: hidden;
-            transition: transform 0.5s;
+            background: linear-gradient(135deg, rgba(79,110,247,0.06), rgba(155,122,255,0.03));
         }
 
-        .portfolio-preview-bg {
+        .folio-browser {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(253, 121, 168, 0.05));
-        }
-
-        .portfolio-browser {
-            position: absolute;
-            top: 24px;
-            left: 24px;
-            right: 24px;
-            bottom: -20px;
+            top: 20px; left: 20px; right: 20px; bottom: -16px;
             background: var(--bg);
             border-radius: 10px 10px 0 0;
             border: 1px solid var(--border);
             border-bottom: none;
             overflow: hidden;
-            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .browser-top {
-            height: 32px;
-            background: rgba(255, 255, 255, 0.04);
+        .browser-bar {
+            height: 28px;
+            background: var(--surface-2);
             display: flex;
             align-items: center;
-            padding: 0 14px;
-            gap: 6px;
+            padding: 0 12px;
+            gap: 5px;
         }
 
-        .browser-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        .browser-dot-red { background: #ff5f57; }
-        .browser-dot-yellow { background: #ffbd2e; }
-        .browser-dot-green { background: #28c840; }
+        .dot-r { width: 7px; height: 7px; border-radius: 50%; background: #ff5f57; }
+        .dot-y { width: 7px; height: 7px; border-radius: 50%; background: #ffbd2e; }
+        .dot-g { width: 7px; height: 7px; border-radius: 50%; background: #28c840; }
 
         .browser-url {
-            margin-left: 12px;
-            flex: 1;
-            height: 18px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            padding: 0 8px;
-            font-size: 0.55rem;
-            color: var(--gray-500);
+            margin-left: 10px; flex: 1; height: 16px;
+            background: var(--bg); border-radius: 4px;
+            display: flex; align-items: center;
+            padding: 0 8px; font-size: 0.5rem; color: var(--text-muted);
         }
 
-        .browser-content {
-            padding: 16px;
+        .browser-body { padding: 14px; }
+        .browser-block { border-radius: 6px; margin-bottom: 8px; }
+        .bb-hero { height: 50px; }
+        .bb-blue { background: rgba(79,110,247,0.12); }
+        .bb-mint { background: rgba(61,214,200,0.12); }
+        .bb-coral { background: rgba(255,107,138,0.12); }
+        .bb-line { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.04); margin-bottom: 5px; }
+        .bb-line:nth-child(1) { width: 60%; }
+        .bb-line:nth-child(2) { width: 80%; }
+        .bb-line:nth-child(3) { width: 40%; }
+        .bb-cards { display: flex; gap: 5px; margin-top: 8px; }
+        .bb-mini { flex: 1; height: 24px; border-radius: 4px; background: var(--surface); border: 1px solid var(--border); }
+
+        .folio-info { padding: 18px 20px; }
+        .folio-type { font-size: 0.6rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--blue-light); margin-bottom: 4px; }
+        .folio-name { font-family: 'Instrument Serif', serif; font-size: 1.1rem; margin-bottom: 3px; }
+        .folio-desc { font-size: 0.72rem; color: var(--text-muted); }
+
+        .folio-live {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.62rem; color: var(--mint); margin-top: 8px; font-weight: 500;
         }
 
-        .browser-hero {
-            height: 60px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-        }
-
-        .browser-hero-purple {
-            background: linear-gradient(135deg, rgba(108, 92, 231, 0.2), rgba(253, 121, 168, 0.1));
-        }
-
-        .browser-hero-teal {
-            background: linear-gradient(135deg, rgba(0, 206, 201, 0.2), rgba(108, 92, 231, 0.1));
-        }
-
-        .browser-hero-pink {
-            background: linear-gradient(135deg, rgba(253, 121, 168, 0.2), rgba(255, 234, 167, 0.1));
-        }
-
-        .browser-lines {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .browser-line {
-            height: 5px;
-            border-radius: 3px;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .browser-line:nth-child(1) { width: 65%; }
-        .browser-line:nth-child(2) { width: 85%; }
-        .browser-line:nth-child(3) { width: 45%; }
-
-        .browser-cards {
-            display: flex;
-            gap: 6px;
-            margin-top: 10px;
-        }
-
-        .browser-minicard {
-            flex: 1;
-            height: 30px;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
-        }
-
-        .portfolio-info {
-            padding: 22px 24px;
-        }
-
-        .portfolio-type {
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--accent-2);
-            margin-bottom: 6px;
-        }
-
-        .portfolio-name {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.2rem;
-            margin-bottom: 4px;
-        }
-
-        .portfolio-desc {
-            font-size: 0.78rem;
-            color: var(--gray-500);
-        }
-
-        .portfolio-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.68rem;
-            color: var(--green);
-            margin-top: 10px;
-        }
-
-        .portfolio-status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--green);
+        .pulse-dot {
+            width: 6px; height: 6px; border-radius: 50%; background: var(--mint);
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* ========== SLIDE 8: GUARANTEE ========== */
-        .guarantee-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
+        .folio-col { display: flex; flex-direction: column; gap: 14px; }
 
-        .guarantee-card {
-            padding: 40px 28px;
-            text-align: center;
-        }
+        .folio-card-sm .folio-screen { height: 150px; }
 
-        .guarantee-icon-wrap {
-            width: 64px;
-            height: 64px;
-            border-radius: 18px;
-            background: var(--gradient-card);
+        /* ============ GUARANTEE ============ */
+        .guar-icon {
+            width: 56px; height: 56px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; margin: 0 auto 18px;
             border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            margin: 0 auto 20px;
         }
 
-        .guarantee-card h3 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.15rem;
-            margin-bottom: 10px;
+        .guar-icon-blue { background: rgba(79,110,247,0.08); }
+        .guar-icon-mint { background: rgba(61,214,200,0.08); }
+        .guar-icon-violet { background: rgba(155,122,255,0.08); }
+
+        /* ============ CONTACT ============ */
+        .contact-center { text-align: center; }
+
+        .contact-row {
+            display: flex; justify-content: center; gap: 12px; margin-bottom: 40px;
         }
 
-        .guarantee-card p {
-            font-size: 0.82rem;
-            color: var(--gray-400);
-            line-height: 1.6;
-        }
-
-        /* ========== SLIDE 9: CONTACT ========== */
-        .slide-contact {
-            text-align: center;
-        }
-
-        .slide-contact .slide-title {
-            font-size: 4.5rem;
-            max-width: 800px;
-            margin: 0 auto 20px;
-        }
-
-        .slide-contact .slide-subtitle {
-            margin: 0 auto 56px;
-        }
-
-        .contact-cards {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            margin-bottom: 48px;
-        }
-
-        .contact-card {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 18px 24px;
-            text-decoration: none;
-            color: var(--white);
-        }
-
-        .contact-icon-wrap {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .contact-icon-phone { background: linear-gradient(135deg, rgba(108, 92, 231, 0.15), rgba(108, 92, 231, 0.05)); }
-        .contact-icon-email { background: linear-gradient(135deg, rgba(253, 121, 168, 0.15), rgba(253, 121, 168, 0.05)); }
-        .contact-icon-whatsapp { background: linear-gradient(135deg, rgba(0, 184, 148, 0.15), rgba(0, 184, 148, 0.05)); }
-
-        .contact-card-info {
-            text-align: left;
-        }
-
-        .contact-card-label {
-            font-size: 0.65rem;
-            color: var(--gray-500);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
-        }
-
-        .contact-card-value {
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-top: 2px;
-        }
-
-        .contact-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 18px 44px;
-            background: var(--gradient-main);
-            color: var(--white);
-            font-size: 0.95rem;
-            font-weight: 600;
-            border-radius: 60px;
-            text-decoration: none;
+        .contact-chip {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 20px;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 14px; text-decoration: none; color: var(--text);
             transition: all 0.3s;
-            box-shadow: 0 4px 30px rgba(108, 92, 231, 0.3);
         }
 
-        .contact-cta:hover {
+        .contact-chip:hover {
+            border-color: rgba(79,110,247,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .chip-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1rem;
+        }
+
+        .chip-icon-blue { background: rgba(79,110,247,0.12); }
+        .chip-icon-coral { background: rgba(255,107,138,0.12); }
+        .chip-icon-mint { background: rgba(61,214,200,0.12); }
+
+        .chip-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .chip-value { font-size: 0.85rem; font-weight: 500; margin-top: 1px; }
+
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 40px;
+            background: var(--grad-1);
+            color: white; font-size: 0.9rem; font-weight: 600;
+            border-radius: 60px; text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 24px rgba(79,110,247,0.3);
+        }
+
+        .cta-btn:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 40px rgba(108, 92, 231, 0.4);
+            box-shadow: 0 8px 32px rgba(79,110,247,0.4);
         }
 
-        .contact-cta svg {
-            width: 20px;
-            height: 20px;
-        }
+        .cta-btn svg { width: 18px; height: 18px; }
 
-        .contact-trust {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 56px;
+        .trust-row {
+            display: flex; justify-content: center; gap: 36px; margin-top: 48px;
         }
 
         .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.78rem;
-            color: var(--gray-500);
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.72rem; color: var(--text-muted);
         }
 
-        .trust-icon {
-            font-size: 1rem;
-        }
+        /* ============ ANIMATIONS ============ */
+        .anim { opacity: 0; transform: translateY(24px); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .slide.active .anim { opacity: 1; transform: translateY(0); }
+        .d1 { transition-delay: 0.05s; }
+        .d2 { transition-delay: 0.1s; }
+        .d3 { transition-delay: 0.15s; }
+        .d4 { transition-delay: 0.2s; }
+        .d5 { transition-delay: 0.25s; }
+        .d6 { transition-delay: 0.3s; }
 
-        /* ========== SLIDE NUMBER ========== */
-        .slide-number {
-            position: absolute;
-            bottom: 28px;
-            right: 40px;
-            font-size: 0.7rem;
-            color: var(--gray-500);
-            font-weight: 500;
-            letter-spacing: 2px;
-            font-variant-numeric: tabular-nums;
-        }
-
-        /* ========== ANIMATIONS ========== */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .fade-up-d1 { transition-delay: 0.05s; }
-        .fade-up-d2 { transition-delay: 0.1s; }
-        .fade-up-d3 { transition-delay: 0.15s; }
-        .fade-up-d4 { transition-delay: 0.2s; }
-        .fade-up-d5 { transition-delay: 0.25s; }
-        .fade-up-d6 { transition-delay: 0.3s; }
-
-        /* ========== RESPONSIVE ========== */
+        /* ============ RESPONSIVE ============ */
         @media (max-width: 1024px) {
-            .slide { padding: 80px 32px; }
-            .slide-title { font-size: 2.8rem; }
-            .slide-cover .slide-title { font-size: 3.5rem; }
-            .process-steps { grid-template-columns: repeat(3, 1fr); }
-            .process-card:nth-child(3)::after { display: none; }
+            .slide { padding: 40px 40px 80px; }
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.2rem; }
+            .grid-5 { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (max-width: 768px) {
-            html { scroll-snap-type: none; }
-            .slide { padding: 80px 20px; min-height: auto; padding-top: 100px; padding-bottom: 60px; }
-            .nav { top: 10px; padding: 8px 10px; }
-            .nav-dot { width: 6px; height: 6px; }
-            .nav-brand { font-size: 0.75rem; padding: 6px 12px; }
-            .slide-tag { font-size: 0.6rem; }
-            .slide-title { font-size: 2rem; }
-            .slide-cover .slide-title { font-size: 2.5rem; }
-            .slide-subtitle { font-size: 0.92rem; }
-            .cover-stats { flex-direction: column; gap: 8px; }
-            .cover-stat { padding: 16px 24px; }
-            .cover-stat-number { font-size: 2rem; }
-            .problem-grid { grid-template-columns: 1fr; gap: 24px; }
-            .solution-grid { grid-template-columns: 1fr; }
-            .plans-grid { grid-template-columns: 1fr; }
-            .process-steps { grid-template-columns: 1fr; }
-            .process-card::after { display: none; }
-            .guarantee-grid { grid-template-columns: 1fr; }
-            .portfolio-grid { grid-template-columns: 1fr; }
-            .contact-cards { flex-direction: column; align-items: center; }
-            .contact-card { width: 100%; max-width: 300px; }
-            .contact-trust { flex-direction: column; align-items: center; gap: 16px; }
-            .slide-contact .slide-title { font-size: 2.5rem; }
-            .comparison-table th, .comparison-table td { padding: 12px 10px; font-size: 0.72rem; }
-            .slide-number { display: none; }
-            .shape-blob-1 { width: 250px; height: 250px; }
-            .shape-blob-2 { width: 200px; height: 200px; }
-            .shape-blob-3 { width: 150px; height: 150px; }
+            .slide { padding: 30px 20px 80px; }
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            .subtitle { font-size: 0.9rem; }
+            .grid-2, .grid-3, .grid-5 { grid-template-columns: 1fr; }
+            .folio-grid { grid-template-columns: 1fr; }
+            .cover-metrics { flex-direction: column; gap: 16px; align-items: center; }
+            .contact-row { flex-direction: column; align-items: center; }
+            .trust-row { flex-direction: column; align-items: center; gap: 12px; }
+            .float-scene { display: none; }
+            .stat-big { font-size: 4rem; }
+            .comp-table th, .comp-table td { padding: 10px 8px; font-size: 0.7rem; }
+            .controls { padding: 0 16px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Background Elements -->
-    <div class="floating-shapes">
-        <div class="shape-blob shape-blob-1"></div>
-        <div class="shape-blob shape-blob-2"></div>
-        <div class="shape-blob shape-blob-3"></div>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress"></div>
+
+    <!-- Presentation Deck -->
+    <div class="deck" id="deck">
+
+        <!-- SLIDE 1: COVER -->
+        <div class="slide active" data-slide="0">
+            <!-- 3D Objects -->
+            <div class="float-scene" style="top:12%;right:10%;">
+                <div class="float-obj">
+                    <div class="cube-3d">
+                        <div class="cube-face cube-face-front"></div>
+                        <div class="cube-face cube-face-back"></div>
+                        <div class="cube-face cube-face-left"></div>
+                        <div class="cube-face cube-face-right"></div>
+                        <div class="cube-face cube-face-top"></div>
+                        <div class="cube-face cube-face-bottom"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="float-scene" style="bottom:20%;left:8%;">
+                <div class="float-obj" style="animation-delay:-3s;">
+                    <div class="sphere-3d"></div>
+                </div>
+            </div>
+            <div class="float-scene" style="top:30%;left:5%;">
+                <div class="ring-3d"></div>
+            </div>
+            <div class="float-scene" style="bottom:15%;right:6%;">
+                <div class="float-obj" style="animation-delay:-5s;">
+                    <div class="donut-3d"></div>
+                </div>
+            </div>
+
+            <div class="slide-inner cover-center">
+                <div class="cover-logo anim">
+                    <div class="cover-logo-icon">W</div>
+                    <span class="cover-logo-name">Webly</span>
+                </div>
+                <h1 class="anim d1">Webly Builds Websites<br>That <em>Bring You Customers</em></h1>
+                <p class="subtitle cover-subtitle anim d2">Professional websites for Bangalore businesses. You focus on running your business — Webly handles everything digital.</p>
+                <div class="cover-metrics anim d3">
+                    <div class="metric">
+                        <div class="metric-value">7 Days</div>
+                        <div class="metric-label">Delivery</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">100%</div>
+                        <div class="metric-label">Mobile Ready</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">Zero</div>
+                        <div class="metric-label">Tech Headaches</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: PROBLEM -->
+        <div class="slide" data-slide="1">
+            <div class="float-scene" style="top:10%;right:6%;">
+                <div class="float-obj" style="animation-delay:-2s;">
+                    <div class="pyramid-3d"></div>
+                </div>
+            </div>
+            <div class="float-scene" style="bottom:18%;left:4%;">
+                <div class="float-obj" style="animation-delay:-6s;">
+                    <div class="hex-3d"></div>
+                </div>
+            </div>
+            <div class="slide-inner">
+                <span class="tag anim">The Problem</span>
+                <h2 class="anim d1">Without a Website,<br>You're <em>Invisible</em></h2>
+                <div class="grid-2" style="margin-top:32px;">
+                    <div class="anim d2">
+                        <div class="problem-item">
+                            <div class="problem-num">01</div>
+                            <span class="problem-text"><strong>Customers Google before visiting.</strong> If you don't show up, your competitor gets the call.</span>
+                        </div>
+                        <div class="problem-item">
+                            <div class="problem-num">02</div>
+                            <span class="problem-text"><strong>"Send me your website"</strong> — no website means lost credibility instantly.</span>
+                        </div>
+                        <div class="problem-item">
+                            <div class="problem-num">03</div>
+                            <span class="problem-text"><strong>Depending on Justdial alone</strong> means missing 80% of customers searching online.</span>
+                        </div>
+                        <div class="problem-item">
+                            <div class="problem-num">04</div>
+                            <span class="problem-text"><strong>Your competitor has a website.</strong> Customers compare and pick whoever looks professional.</span>
+                        </div>
+                    </div>
+                    <div class="stat-card anim d3">
+                        <div class="stat-big">88%</div>
+                        <div class="stat-label">of customers research a business<br>online before visiting</div>
+                        <div class="stat-source">— Google Consumer Insights, India</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: SOLUTION -->
+        <div class="slide" data-slide="2">
+            <div class="float-scene" style="top:8%;right:4%;">
+                <div class="float-obj"><div class="sphere-3d" style="width:50px;height:50px;background:radial-gradient(circle at 30% 30%,rgba(61,214,200,0.15),rgba(79,110,247,0.03));border-color:rgba(61,214,200,0.1);"></div></div>
+            </div>
+            <div class="float-scene" style="bottom:12%;right:8%;">
+                <div class="ring-3d" style="width:60px;height:60px;border-color:rgba(155,122,255,0.12);animation-duration:18s;"></div>
+            </div>
+            <div class="slide-inner">
+                <span class="tag anim">The Solution</span>
+                <h2 class="anim d1">Everything You Need.<br><em>Nothing You Don't.</em></h2>
+                <p class="subtitle anim d2">Designed, built, hosted, and managed by Webly. All you do is share your business details.</p>
+                <div class="grid-3" style="margin-top:32px;">
+                    <div class="card anim d1"><div class="card-icon card-icon-blue">🌐</div><h3>Professional Website</h3><p>Modern design that looks stunning on every device. Built to impress your customers.</p></div>
+                    <div class="card anim d2"><div class="card-icon card-icon-mint">🔒</div><h3>Domain + Hosting + SSL</h3><p>Your own .com domain, fast hosting, and security — set up and managed by Webly.</p></div>
+                    <div class="card anim d3"><div class="card-icon card-icon-coral">💬</div><h3>WhatsApp Integration</h3><p>One tap and customers message you directly on WhatsApp. No missed leads.</p></div>
+                    <div class="card anim d4"><div class="card-icon card-icon-violet">🔍</div><h3>SEO Optimized</h3><p>Built to rank on Google. Your business shows up when customers search locally.</p></div>
+                    <div class="card anim d5"><div class="card-icon card-icon-blue">📄</div><h3>Monthly Landing Pages</h3><p>Webly builds dedicated pages for your offers and promotions every month.</p></div>
+                    <div class="card anim d6"><div class="card-icon card-icon-peach">🛠️</div><h3>Ongoing Updates</h3><p>Change prices, photos, or info — message Webly on WhatsApp, done within hours.</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: PLANS -->
+        <div class="slide" data-slide="3">
+            <div class="float-scene" style="bottom:10%;left:3%;">
+                <div class="float-obj" style="animation-delay:-4s;">
+                    <div class="donut-3d" style="width:45px;height:45px;border-width:8px;border-color:rgba(79,110,247,0.1);"></div>
+                </div>
+            </div>
+            <div class="slide-inner">
+                <span class="tag anim">Plans & Pricing</span>
+                <h2 class="anim d1">Transparent Pricing.<br><em>No Surprises.</em></h2>
+                <div class="grid-3" style="margin-top:32px;">
+                    <div class="plan anim d2">
+                        <div class="plan-name">Starter</div>
+                        <div class="plan-for">Small shops & local services</div>
+                        <div><span class="plan-price">&#8377;8,000</span> <span class="plan-price-note">setup</span></div>
+                        <div class="plan-monthly">+ &#8377;1,500<span> /month</span></div>
+                        <hr class="plan-divider">
+                        <ul class="plan-list">
+                            <li><span class="check">&#10003;</span>Single page website</li>
+                            <li><span class="check">&#10003;</span>Mobile responsive</li>
+                            <li><span class="check">&#10003;</span>WhatsApp click-to-chat</li>
+                            <li><span class="check">&#10003;</span>Domain + hosting + SSL</li>
+                            <li><span class="check">&#10003;</span>2 changes/month</li>
+                            <li><span class="check">&#10003;</span>1 landing page/month</li>
+                        </ul>
+                    </div>
+                    <div class="plan featured anim d3">
+                        <div class="plan-badge">Most Popular</div>
+                        <div class="plan-name">Business</div>
+                        <div class="plan-for">Restaurants, clinics, salons, gyms</div>
+                        <div><span class="plan-price">&#8377;15,000</span> <span class="plan-price-note">setup</span></div>
+                        <div class="plan-monthly">+ &#8377;3,000<span> /month</span></div>
+                        <hr class="plan-divider">
+                        <ul class="plan-list">
+                            <li><span class="check">&#10003;</span>Multi-section website</li>
+                            <li><span class="check">&#10003;</span>Mobile + tablet optimized</li>
+                            <li><span class="check">&#10003;</span>WhatsApp integration + form</li>
+                            <li><span class="check">&#10003;</span>Image gallery + lightbox</li>
+                            <li><span class="check">&#10003;</span>Full SEO + sitemap</li>
+                            <li><span class="check">&#10003;</span>Domain + hosting + SSL</li>
+                            <li><span class="check">&#10003;</span>5 changes/month</li>
+                            <li><span class="check">&#10003;</span>2 landing pages/month</li>
+                            <li><span class="check">&#10003;</span>Festival pages included</li>
+                        </ul>
+                    </div>
+                    <div class="plan anim d4">
+                        <div class="plan-name">Premium</div>
+                        <div class="plan-for">Real estate, startups, agencies</div>
+                        <div><span class="plan-price">&#8377;25,000</span> <span class="plan-price-note">setup</span></div>
+                        <div class="plan-monthly">+ &#8377;5,000<span> /month</span></div>
+                        <hr class="plan-divider">
+                        <ul class="plan-list">
+                            <li><span class="check">&#10003;</span>Full professional website</li>
+                            <li><span class="check">&#10003;</span>Custom animations</li>
+                            <li><span class="check">&#10003;</span>All devices optimized</li>
+                            <li><span class="check">&#10003;</span>Complete SEO + schema</li>
+                            <li><span class="check">&#10003;</span>Legal pages + cookies</li>
+                            <li><span class="check">&#10003;</span>Domain + hosting + SSL</li>
+                            <li><span class="check">&#10003;</span>Unlimited changes</li>
+                            <li><span class="check">&#10003;</span>4 landing pages/month</li>
+                            <li><span class="check">&#10003;</span>Same-day turnaround</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: PROCESS -->
+        <div class="slide" data-slide="4">
+            <div class="float-scene" style="top:10%;left:3%;">
+                <div class="float-obj" style="animation-delay:-1s;">
+                    <div class="cube-3d" style="width:40px;height:40px;">
+                        <div class="cube-face cube-face-front" style="width:40px;height:40px;transform:translateZ(20px);border-color:rgba(61,214,200,0.15);background:rgba(61,214,200,0.05);"></div>
+                        <div class="cube-face cube-face-right" style="width:40px;height:40px;transform:translateX(20px) rotateY(90deg);border-color:rgba(61,214,200,0.1);background:rgba(61,214,200,0.03);"></div>
+                        <div class="cube-face cube-face-top" style="width:40px;height:40px;transform:translateY(-20px) rotateX(90deg);border-color:rgba(61,214,200,0.12);background:rgba(61,214,200,0.04);"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-inner">
+                <span class="tag anim">How It Works</span>
+                <h2 class="anim d1">From Idea to <em>Live Website</em><br>in 7 Days</h2>
+                <p class="subtitle anim d2">You share your business info. Webly handles the rest.</p>
+                <div class="grid-5" style="margin-top:36px;">
+                    <div class="step anim d1">
+                        <div class="step-num">01</div>
+                        <h3>Share Details</h3>
+                        <p>Send Webly your logo, photos & info on WhatsApp</p>
+                        <span class="step-tag">Day 1-2</span>
+                    </div>
+                    <div class="step anim d2">
+                        <div class="step-num">02</div>
+                        <h3>Webly Designs</h3>
+                        <p>Professional website tailored to your business</p>
+                        <span class="step-tag">Day 2-5</span>
+                    </div>
+                    <div class="step anim d3">
+                        <div class="step-num">03</div>
+                        <h3>You Review</h3>
+                        <p>Video call preview, share your feedback</p>
+                        <span class="step-tag">Day 5-6</span>
+                    </div>
+                    <div class="step anim d4">
+                        <div class="step-num">04</div>
+                        <h3>Go Live</h3>
+                        <p>Domain, hosting, SSL — all set up and ready</p>
+                        <span class="step-tag">Day 7</span>
+                    </div>
+                    <div class="step anim d5">
+                        <div class="step-num">05</div>
+                        <h3>Monthly Care</h3>
+                        <p>Updates, landing pages & hosting managed</p>
+                        <span class="step-tag">Ongoing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: COMPARISON -->
+        <div class="slide" data-slide="5">
+            <div class="slide-inner">
+                <span class="tag anim">Why Webly</span>
+                <h2 class="anim d1">How Webly <em>Compares</em></h2>
+                <p class="subtitle anim d2">See why Bangalore businesses choose Webly.</p>
+                <div class="anim d3" style="margin-top:28px;overflow-x:auto;">
+                    <table class="comp-table">
+                        <thead>
+                            <tr><th></th><th>Others</th><th>Webly</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Upfront cost</td><td class="no">&#8377;30K — &#8377;1L+</td><td class="highlight">&#8377;8K — &#8377;25K</td></tr>
+                            <tr><td>Monthly management</td><td class="no">Not included</td><td class="yes">&#10003; All inclusive</td></tr>
+                            <tr><td>Delivery time</td><td class="no">2 — 6 weeks</td><td class="yes">&#10003; 7 days</td></tr>
+                            <tr><td>Content changes</td><td class="no">&#8377;500 — &#8377;1K each</td><td class="yes">&#10003; Included</td></tr>
+                            <tr><td>Landing pages</td><td class="no">&#8377;3K — &#8377;5K each</td><td class="yes">&#10003; Monthly</td></tr>
+                            <tr><td>Hosting managed</td><td class="no">You figure it out</td><td class="yes">&#10003; Webly handles it</td></tr>
+                            <tr><td>Support</td><td class="no">Email / ticket</td><td class="yes">&#10003; Direct WhatsApp</td></tr>
+                            <tr><td>Mobile friendly</td><td class="no">Sometimes</td><td class="yes">&#10003; Always</td></tr>
+                            <tr><td>SEO included</td><td class="no">Extra &#8377;5K+</td><td class="yes">&#10003; Every plan</td></tr>
+                            <tr><td>Refund guarantee</td><td class="no">No</td><td class="yes">&#10003; 10 days</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: PORTFOLIO -->
+        <div class="slide" data-slide="6">
+            <div class="float-scene" style="top:8%;left:3%;">
+                <div class="float-obj" style="animation-delay:-7s;">
+                    <div class="sphere-3d" style="width:40px;height:40px;"></div>
+                </div>
+            </div>
+            <div class="slide-inner">
+                <span class="tag anim">Webly's Work</span>
+                <h2 class="anim d1">Built for <em>Bangalore Businesses</em></h2>
+                <div class="folio-grid anim d2" style="margin-top:28px;">
+                    <div class="folio-card">
+                        <div class="folio-screen">
+                            <div class="folio-browser">
+                                <div class="browser-bar"><div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div><div class="browser-url">21stcastle.com</div></div>
+                                <div class="browser-body">
+                                    <div class="browser-block bb-hero bb-blue"></div>
+                                    <div class="bb-line" style="width:60%"></div>
+                                    <div class="bb-line" style="width:80%"></div>
+                                    <div class="bb-line" style="width:40%"></div>
+                                    <div class="bb-cards"><div class="bb-mini"></div><div class="bb-mini"></div><div class="bb-mini"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="folio-info">
+                            <div class="folio-type">Real Estate Developer</div>
+                            <div class="folio-name">21st Castle Developers</div>
+                            <div class="folio-desc">Premium apartments & villas — Sarjapur Road, Bangalore</div>
+                            <div class="folio-live"><div class="pulse-dot"></div> Live</div>
+                        </div>
+                    </div>
+                    <div class="folio-col">
+                        <div class="folio-card folio-card-sm">
+                            <div class="folio-screen" style="background:linear-gradient(135deg,rgba(61,214,200,0.06),rgba(79,110,247,0.03));">
+                                <div class="folio-browser">
+                                    <div class="browser-bar"><div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div><div class="browser-url">yourbusiness.com</div></div>
+                                    <div class="browser-body"><div class="browser-block bb-hero bb-mint"></div><div class="bb-line" style="width:60%"></div><div class="bb-line" style="width:45%"></div></div>
+                                </div>
+                            </div>
+                            <div class="folio-info" style="padding:14px 16px;">
+                                <div class="folio-type">Your Business</div>
+                                <div class="folio-name">This Could Be You</div>
+                            </div>
+                        </div>
+                        <div class="folio-card folio-card-sm">
+                            <div class="folio-screen" style="background:linear-gradient(135deg,rgba(255,107,138,0.06),rgba(255,176,122,0.03));">
+                                <div class="folio-browser">
+                                    <div class="browser-bar"><div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div><div class="browser-url">yourbrand.in</div></div>
+                                    <div class="browser-body"><div class="browser-block bb-hero bb-coral"></div><div class="bb-line" style="width:70%"></div><div class="bb-line" style="width:50%"></div></div>
+                                </div>
+                            </div>
+                            <div class="folio-info" style="padding:14px 16px;">
+                                <div class="folio-type">Your Brand</div>
+                                <div class="folio-name">Ready in 7 Days</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: GUARANTEE -->
+        <div class="slide" data-slide="7">
+            <div class="float-scene" style="top:15%;right:5%;">
+                <div class="ring-3d" style="width:70px;height:70px;border-color:rgba(79,110,247,0.1);animation-duration:20s;"></div>
+            </div>
+            <div class="float-scene" style="bottom:20%;left:5%;">
+                <div class="float-obj" style="animation-delay:-3s;">
+                    <div class="cube-3d" style="width:35px;height:35px;">
+                        <div class="cube-face cube-face-front" style="width:35px;height:35px;transform:translateZ(17px);"></div>
+                        <div class="cube-face cube-face-top" style="width:35px;height:35px;transform:translateY(-17px) rotateX(90deg);"></div>
+                        <div class="cube-face cube-face-right" style="width:35px;height:35px;transform:translateX(17px) rotateY(90deg);"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-inner">
+                <span class="tag anim">Your Protection</span>
+                <h2 class="anim d1">Zero Risk.<br><em>That's Webly's Promise.</em></h2>
+                <p class="subtitle anim d2">Webly earns trust through transparency, not just words.</p>
+                <div class="grid-3" style="margin-top:36px;">
+                    <div class="card anim d3" style="text-align:center;">
+                        <div class="guar-icon guar-icon-blue">🛡️</div>
+                        <h3>10-Day Money Back</h3>
+                        <p>If Webly doesn't deliver within 10 working days, full refund of your advance. No questions.</p>
+                    </div>
+                    <div class="card anim d4" style="text-align:center;">
+                        <div class="guar-icon guar-icon-mint">👁️</div>
+                        <h3>See Before You Pay</h3>
+                        <p>You see the complete website before paying the remaining 50%. Pay only when satisfied.</p>
+                    </div>
+                    <div class="card anim d5" style="text-align:center;">
+                        <div class="guar-icon guar-icon-violet">📱</div>
+                        <h3>Daily Updates</h3>
+                        <p>WhatsApp update every day during the build. No silence, no guessing — total transparency.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: CONTACT -->
+        <div class="slide" data-slide="8">
+            <div class="float-scene" style="top:12%;left:8%;">
+                <div class="float-obj"><div class="sphere-3d" style="width:45px;height:45px;"></div></div>
+            </div>
+            <div class="float-scene" style="bottom:18%;right:6%;">
+                <div class="float-obj" style="animation-delay:-4s;">
+                    <div class="donut-3d" style="width:50px;height:50px;border-width:8px;"></div>
+                </div>
+            </div>
+            <div class="slide-inner contact-center">
+                <span class="tag anim">Let's Talk</span>
+                <h1 class="anim d1">Ready to Get Your<br><em>Business Online?</em></h1>
+                <p class="subtitle anim d2" style="max-width:460px;margin:0 auto 40px;">No pressure, no commitment. Just a quick chat about what your business needs.</p>
+                <div class="contact-row anim d3">
+                    <a href="tel:+919663598135" class="contact-chip">
+                        <div class="chip-icon chip-icon-blue">📞</div>
+                        <div><div class="chip-label">Call</div><div class="chip-value">+91 96635 98135</div></div>
+                    </a>
+                    <a href="mailto:vinaykumarperson99@gmail.com" class="contact-chip">
+                        <div class="chip-icon chip-icon-coral">✉️</div>
+                        <div><div class="chip-label">Email</div><div class="chip-value">vinaykumarperson99@gmail.com</div></div>
+                    </a>
+                    <a href="https://wa.me/919663598135?text=Hi%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business." target="_blank" class="contact-chip">
+                        <div class="chip-icon chip-icon-mint">💬</div>
+                        <div><div class="chip-label">WhatsApp</div><div class="chip-value">+91 96635 98135</div></div>
+                    </a>
+                </div>
+                <a href="https://wa.me/919663598135?text=Hi%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business." target="_blank" class="cta-btn anim d4">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Message Webly on WhatsApp
+                </a>
+                <div class="trust-row anim d5">
+                    <div class="trust-item">📍 HSR Layout, Bangalore</div>
+                    <div class="trust-item">⚡ Reply within 2 hours</div>
+                    <div class="trust-item">🛡️ 10-day money back guarantee</div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div class="grid-pattern"></div>
 
-    <!-- Navigation -->
-    <nav class="nav" id="nav">
-        <div class="nav-brand">WEBLY</div>
-        <div class="nav-dots" id="navDots">
-            <span class="nav-dot active" data-slide="0"></span>
-            <span class="nav-dot" data-slide="1"></span>
-            <span class="nav-dot" data-slide="2"></span>
-            <span class="nav-dot" data-slide="3"></span>
-            <span class="nav-dot" data-slide="4"></span>
-            <span class="nav-dot" data-slide="5"></span>
-            <span class="nav-dot" data-slide="6"></span>
-            <span class="nav-dot" data-slide="7"></span>
-            <span class="nav-dot" data-slide="8"></span>
+    <!-- Bottom Controls -->
+    <div class="controls">
+        <div class="controls-brand">WEBLY</div>
+        <div class="controls-center">
+            <button class="ctrl-arrow" id="prevBtn">&#8592;</button>
+            <div class="controls-dots" id="dots"></div>
+            <button class="ctrl-arrow" id="nextBtn">&#8594;</button>
         </div>
-    </nav>
-
-    <!-- SLIDE 1: COVER -->
-    <section class="slide slide-cover" id="slide-0">
-        <div class="slide-content">
-            <div class="cover-logo fade-up">
-                <div class="cover-logo-icon">W</div>
-                <span class="cover-logo-text">Webly</span>
-                <div class="cover-logo-dot"></div>
-                <span class="cover-logo-status">Available</span>
-            </div>
-            <h1 class="slide-title fade-up fade-up-d1">
-                Webly Builds Websites<br>That <em>Bring You Customers</em>
-            </h1>
-            <p class="slide-subtitle fade-up fade-up-d2">
-                Professional websites for Bangalore businesses. You focus on your business — Webly handles everything digital.
-            </p>
-            <div class="cover-stats fade-up fade-up-d3">
-                <div class="cover-stat glass">
-                    <div class="cover-stat-number">7 Days</div>
-                    <div class="cover-stat-label">Delivery</div>
-                </div>
-                <div class="cover-stat glass">
-                    <div class="cover-stat-number">100%</div>
-                    <div class="cover-stat-label">Mobile Friendly</div>
-                </div>
-                <div class="cover-stat glass">
-                    <div class="cover-stat-number">Zero</div>
-                    <div class="cover-stat-label">Tech Headaches</div>
-                </div>
-            </div>
-            <div class="cover-location fade-up fade-up-d4">
-                <span>Based in HSR Layout, Bangalore</span>
-            </div>
-        </div>
-        <div class="slide-number">01 — 09</div>
-    </section>
-
-    <!-- SLIDE 2: PROBLEM -->
-    <section class="slide" id="slide-1">
-        <div class="slide-content">
-            <span class="slide-tag fade-up">The Problem</span>
-            <h2 class="slide-title fade-up fade-up-d1">Without a Website,<br>You're <em>Invisible</em></h2>
-            <div class="problem-grid">
-                <ul class="problem-list fade-up fade-up-d2">
-                    <li class="problem-item glass">
-                        <div class="problem-icon-wrap">📱</div>
-                        <span class="problem-text"><strong>Customers Google before visiting.</strong> If you don't show up, your competitor gets the business.</span>
-                    </li>
-                    <li class="problem-item glass">
-                        <div class="problem-icon-wrap">🤝</div>
-                        <span class="problem-text"><strong>"Send me your website"</strong> — when someone asks and you have nothing, you lose credibility instantly.</span>
-                    </li>
-                    <li class="problem-item glass">
-                        <div class="problem-icon-wrap">💸</div>
-                        <span class="problem-text"><strong>Depending on Justdial & word of mouth alone</strong> means you're missing 80% of potential customers searching online.</span>
-                    </li>
-                    <li class="problem-item glass">
-                        <div class="problem-icon-wrap">🏪</div>
-                        <span class="problem-text"><strong>Your competitor already has one.</strong> When customers compare, they pick the business that looks professional online.</span>
-                    </li>
-                </ul>
-                <div class="problem-stat-card glass fade-up fade-up-d3">
-                    <div class="problem-stat-content">
-                        <div class="problem-stat-big">88%</div>
-                        <div class="problem-stat-text">of customers research a business online before visiting or buying</div>
-                        <div class="problem-stat-source">— Google Consumer Insights, India 2025</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="slide-number">02 — 09</div>
-    </section>
-
-    <!-- SLIDE 3: SOLUTION -->
-    <section class="slide" id="slide-2">
-        <div class="slide-content">
-            <span class="slide-tag fade-up">The Solution</span>
-            <h2 class="slide-title fade-up fade-up-d1">Everything You Need.<br><em>Nothing You Don't.</em></h2>
-            <p class="slide-subtitle fade-up fade-up-d2">A complete website solution — designed, built, hosted, and managed by Webly. All you do is share your business details.</p>
-            <div class="solution-grid">
-                <div class="solution-card glass fade-up fade-up-d1">
-                    <div class="solution-icon solution-icon-purple">🌐</div>
-                    <h3>Professional Website</h3>
-                    <p>Modern design that looks stunning on every device. Fast, clean, and built to impress your customers.</p>
-                </div>
-                <div class="solution-card glass fade-up fade-up-d2">
-                    <div class="solution-icon solution-icon-teal">🔒</div>
-                    <h3>Domain + Hosting + SSL</h3>
-                    <p>Your own yourname.com domain, reliable hosting, and security — all set up and managed by Webly.</p>
-                </div>
-                <div class="solution-card glass fade-up fade-up-d3">
-                    <div class="solution-icon solution-icon-pink">💬</div>
-                    <h3>WhatsApp Integration</h3>
-                    <p>One tap and customers message you directly. No missed leads. Instant connection from website to WhatsApp.</p>
-                </div>
-                <div class="solution-card glass fade-up fade-up-d4">
-                    <div class="solution-icon solution-icon-teal">🔍</div>
-                    <h3>SEO Optimized</h3>
-                    <p>Built to rank on Google. When someone searches your service in Bangalore, your business shows up.</p>
-                </div>
-                <div class="solution-card glass fade-up fade-up-d5">
-                    <div class="solution-icon solution-icon-purple">📄</div>
-                    <h3>Monthly Landing Pages</h3>
-                    <p>Running a festival offer or promotion? Webly builds a dedicated page you can share on WhatsApp and Instagram.</p>
-                </div>
-                <div class="solution-card glass fade-up fade-up-d6">
-                    <div class="solution-icon solution-icon-pink">🛠️</div>
-                    <h3>Ongoing Updates</h3>
-                    <p>Need to change prices, photos, or contact info? Just message Webly on WhatsApp — done within hours.</p>
-                </div>
-            </div>
-        </div>
-        <div class="slide-number">03 — 09</div>
-    </section>
-
-    <!-- SLIDE 4: PLANS -->
-    <section class="slide" id="slide-3">
-        <div class="slide-content">
-            <span class="slide-tag fade-up">Plans & Pricing</span>
-            <h2 class="slide-title fade-up fade-up-d1">Transparent Pricing.<br><em>No Surprises.</em></h2>
-            <p class="slide-subtitle fade-up fade-up-d2">Choose a plan that fits. Everything is included — no hidden costs, no extra charges for basics.</p>
-            <div class="plans-grid fade-up fade-up-d3">
-                <!-- BASIC -->
-                <div class="plan-card glass">
-                    <div class="plan-name">Starter</div>
-                    <div class="plan-for">Small shops & local services</div>
-                    <div class="plan-price-row">
-                        <span class="plan-price">&#8377;8,000</span>
-                        <span class="plan-price-label"> setup</span>
-                    </div>
-                    <div class="plan-monthly">+ &#8377;1,500<span> /month</span></div>
-                    <hr class="plan-divider">
-                    <ul class="plan-features">
-                        <li><span class="plan-check">&#10003;</span>Single page website</li>
-                        <li><span class="plan-check">&#10003;</span>Mobile responsive design</li>
-                        <li><span class="plan-check">&#10003;</span>WhatsApp click-to-chat</li>
-                        <li><span class="plan-check">&#10003;</span>Contact form</li>
-                        <li><span class="plan-check">&#10003;</span>Domain + hosting + SSL</li>
-                        <li><span class="plan-check">&#10003;</span>2 changes per month</li>
-                        <li><span class="plan-check">&#10003;</span>1 landing page/month</li>
-                    </ul>
-                </div>
-                <!-- BUSINESS -->
-                <div class="plan-card glass popular">
-                    <div class="plan-popular-tag"></div>
-                    <div class="plan-badge">Most Popular</div>
-                    <div class="plan-name">Business</div>
-                    <div class="plan-for">Restaurants, clinics, salons, gyms</div>
-                    <div class="plan-price-row">
-                        <span class="plan-price">&#8377;15,000</span>
-                        <span class="plan-price-label"> setup</span>
-                    </div>
-                    <div class="plan-monthly">+ &#8377;3,000<span> /month</span></div>
-                    <hr class="plan-divider">
-                    <ul class="plan-features">
-                        <li><span class="plan-check">&#10003;</span>Multi-section website</li>
-                        <li><span class="plan-check">&#10003;</span>Mobile + tablet optimized</li>
-                        <li><span class="plan-check">&#10003;</span>WhatsApp integration + form</li>
-                        <li><span class="plan-check">&#10003;</span>Image gallery + lightbox</li>
-                        <li><span class="plan-check">&#10003;</span>Google Maps embed</li>
-                        <li><span class="plan-check">&#10003;</span>Full SEO + sitemap</li>
-                        <li><span class="plan-check">&#10003;</span>Domain + hosting + SSL</li>
-                        <li><span class="plan-check">&#10003;</span>5 changes per month</li>
-                        <li><span class="plan-check">&#10003;</span>2 landing pages/month</li>
-                        <li><span class="plan-check">&#10003;</span>Festival/seasonal pages</li>
-                    </ul>
-                </div>
-                <!-- PREMIUM -->
-                <div class="plan-card glass">
-                    <div class="plan-name">Premium</div>
-                    <div class="plan-for">Real estate, startups, agencies</div>
-                    <div class="plan-price-row">
-                        <span class="plan-price">&#8377;25,000</span>
-                        <span class="plan-price-label"> setup</span>
-                    </div>
-                    <div class="plan-monthly">+ &#8377;5,000<span> /month</span></div>
-                    <hr class="plan-divider">
-                    <ul class="plan-features">
-                        <li><span class="plan-check">&#10003;</span>Full professional website</li>
-                        <li><span class="plan-check">&#10003;</span>Custom animations & effects</li>
-                        <li><span class="plan-check">&#10003;</span>All devices optimized</li>
-                        <li><span class="plan-check">&#10003;</span>Advanced WhatsApp integration</li>
-                        <li><span class="plan-check">&#10003;</span>Gallery, testimonials, multi-page</li>
-                        <li><span class="plan-check">&#10003;</span>Complete SEO + schema</li>
-                        <li><span class="plan-check">&#10003;</span>Legal pages + cookie consent</li>
-                        <li><span class="plan-check">&#10003;</span>Domain + hosting + SSL</li>
-                        <li><span class="plan-check">&#10003;</span>Unlimited changes</li>
-                        <li><span class="plan-check">&#10003;</span>4 landing pages/month</li>
-                        <li><span class="plan-check">&#10003;</span>Same-day turnaround</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="slide-number">04 — 09</div>
-    </section>
-
-    <!-- SLIDE 5: PROCESS -->
-    <section class="slide" id="slide-4">
-        <div class="slide-content">
-            <span class="slide-tag fade-up">How It Works</span>
-            <h2 class="slide-title fade-up fade-up-d1">From Idea to <em>Live Website</em><br>in 7 Days</h2>
-            <p class="slide-subtitle fade-up fade-up-d2">You share your business info. Webly handles the rest. It's that simple.</p>
-            <div class="process-steps fade-up fade-up-d3">
-                <div class="process-card glass">
-                    <div class="process-number">01</div>
-                    <div class="process-icon-wrap">📋</div>
-                    <h3>Share Details</h3>
-                    <p>Send Webly your logo, photos, services, and contact info on WhatsApp</p>
-                    <span class="process-days-tag">Day 1-2</span>
-                </div>
-                <div class="process-card glass">
-                    <div class="process-number">02</div>
-                    <div class="process-icon-wrap">🎨</div>
-                    <h3>Webly Designs & Builds</h3>
-                    <p>Webly creates a professional website tailored to your brand and business</p>
-                    <span class="process-days-tag">Day 2-5</span>
-                </div>
-                <div class="process-card glass">
-                    <div class="process-number">03</div>
-                    <div class="process-icon-wrap">👁️</div>
-                    <h3>You Review</h3>
-                    <p>Webly shows you the website on a video call. You share your feedback</p>
-                    <span class="process-days-tag">Day 5-6</span>
-                </div>
-                <div class="process-card glass">
-                    <div class="process-number">04</div>
-                    <div class="process-icon-wrap">🚀</div>
-                    <h3>Go Live</h3>
-                    <p>Domain, hosting, SSL — all set up. Your site is live and ready</p>
-                    <span class="process-days-tag">Day 7</span>
-                </div>
-                <div class="process-card glass">
-                    <div class="process-number">05</div>
-                    <div class="process-icon-wrap">🔄</div>
-                    <h3>Monthly Care</h3>
-                    <p>Webly manages hosting, makes updates, and builds landing pages for your offers</p>
-                    <span class="process-days-tag">Ongoing</span>
-                </div>
-            </div>
-        </div>
-        <div class="slide-number">05 — 09</div>
-    </section>
-
-    <!-- SLIDE 6: COMPARISON -->
-    <section class="slide" id="slide-5">
-        <div class="slide-content">
-            <span class="slide-tag fade-up">Why Webly</span>
-            <h2 class="slide-title fade-up fade-up-d1">How Webly <em>Compares</em></h2>
-            <p class="slide-subtitle fade-up fade-up-d2">See why Bangalore businesses choose Webly over traditional freelancers and agencies.</p>
-            <div class="comparison-wrapper glass fade-up fade-up-d3">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Others</th>
-                            <th>Webly</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Upfront cost</td>
-                            <td class="comp-no">&#8377;30,000 — &#8377;1,00,000+</td>
-                            <td class="comp-vk">&#8377;8,000 — &#8377;25,000</td>
-                        </tr>
-                        <tr>
-                            <td>Monthly management</td>
-                            <td class="comp-no">Not included</td>
-                            <td class="comp-yes">&#10003; All inclusive</td>
-                        </tr>
-                        <tr>
-                            <td>Delivery time</td>
-                            <td class="comp-no">2 — 6 weeks</td>
-                            <td class="comp-yes">&#10003; 7 days</td>
-                        </tr>
-                        <tr>
-                            <td>Content changes</td>
-                            <td class="comp-no">&#8377;500 — &#8377;1,000 each</td>
-                            <td class="comp-yes">&#10003; Included free</td>
-                        </tr>
-                        <tr>
-                            <td>Landing pages</td>
-                            <td class="comp-no">&#8377;3,000 — &#8377;5,000 each</td>
-                            <td class="comp-yes">&#10003; Included monthly</td>
-                        </tr>
-                        <tr>
-                            <td>Hosting managed</td>
-                            <td class="comp-no">You figure it out</td>
-                            <td class="comp-yes">&#10003; Webly handles it</td>
-                        </tr>
-                        <tr>
-                            <td>Support channel</td>
-                            <td class="comp-no">Email / ticket system</td>
-                            <td class="comp-yes">&#10003; Direct WhatsApp</td>
-                        </tr>
-                        <tr>
-                            <td>Mobile friendly</td>
-                            <td class="comp-no">Sometimes</td>
-                            <td class="comp-yes">&#10003; Always</td>
-                        </tr>
-                        <tr>
-                            <td>SEO included</td>
-                            <td class="comp-no">Extra &#8377;5,000+</td>
-                            <td class="comp-yes">&#10003; Every plan</td>
-                        </tr>
-                        <tr>
-                            <td>Refund guarantee</td>
-                            <td class="comp-no">No</td>
-                            <td class="comp-yes">&#10003; 10-day guarantee</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="slide-number">06 — 09</div>
-    </section>
-
-    <!-- SLIDE 7: PORTFOLIO -->
-    <section class="slide" id="slide-6">
-        <div class="slide-content">
-            <span class="slide-tag fade-up">Webly's Work</span>
-            <h2 class="slide-title fade-up fade-up-d1">Built for <em>Bangalore Businesses</em></h2>
-            <p class="slide-subtitle fade-up fade-up-d2">Real websites, real businesses, real results.</p>
-            <div class="portfolio-grid fade-up fade-up-d3">
-                <!-- Main portfolio item -->
-                <div class="portfolio-card glass">
-                    <div class="portfolio-preview">
-                        <div class="portfolio-preview-bg"></div>
-                        <div class="portfolio-browser">
-                            <div class="browser-top">
-                                <div class="browser-dot browser-dot-red"></div>
-                                <div class="browser-dot browser-dot-yellow"></div>
-                                <div class="browser-dot browser-dot-green"></div>
-                                <div class="browser-url">21stcastle.com</div>
-                            </div>
-                            <div class="browser-content">
-                                <div class="browser-hero browser-hero-purple"></div>
-                                <div class="browser-lines">
-                                    <div class="browser-line"></div>
-                                    <div class="browser-line"></div>
-                                    <div class="browser-line"></div>
-                                </div>
-                                <div class="browser-cards">
-                                    <div class="browser-minicard"></div>
-                                    <div class="browser-minicard"></div>
-                                    <div class="browser-minicard"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <div class="portfolio-type">Real Estate Developer</div>
-                        <div class="portfolio-name">21st Castle Developers</div>
-                        <div class="portfolio-desc">Premium apartments & villas in Sarjapur Road, Bangalore</div>
-                        <div class="portfolio-status">
-                            <div class="portfolio-status-dot"></div>
-                            Live
-                        </div>
-                    </div>
-                </div>
-                <!-- Second column -->
-                <div style="display:flex;flex-direction:column;gap:16px;">
-                    <div class="portfolio-card glass">
-                        <div class="portfolio-preview" style="height:160px;">
-                            <div class="portfolio-preview-bg" style="background:linear-gradient(135deg,rgba(0,206,201,0.08),rgba(108,92,231,0.05));"></div>
-                            <div class="portfolio-browser" style="top:18px;left:18px;right:18px;">
-                                <div class="browser-top">
-                                    <div class="browser-dot browser-dot-red"></div>
-                                    <div class="browser-dot browser-dot-yellow"></div>
-                                    <div class="browser-dot browser-dot-green"></div>
-                                    <div class="browser-url">yourbusiness.com</div>
-                                </div>
-                                <div class="browser-content">
-                                    <div class="browser-hero browser-hero-teal" style="height:40px;"></div>
-                                    <div class="browser-lines">
-                                        <div class="browser-line"></div>
-                                        <div class="browser-line"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portfolio-info" style="padding:16px 20px;">
-                            <div class="portfolio-type">Your Business</div>
-                            <div class="portfolio-name">This Could Be You</div>
-                            <div class="portfolio-desc">Your website, ready in 7 days</div>
-                        </div>
-                    </div>
-                    <div class="portfolio-card glass">
-                        <div class="portfolio-preview" style="height:160px;">
-                            <div class="portfolio-preview-bg" style="background:linear-gradient(135deg,rgba(253,121,168,0.08),rgba(255,234,167,0.05));"></div>
-                            <div class="portfolio-browser" style="top:18px;left:18px;right:18px;">
-                                <div class="browser-top">
-                                    <div class="browser-dot browser-dot-red"></div>
-                                    <div class="browser-dot browser-dot-yellow"></div>
-                                    <div class="browser-dot browser-dot-green"></div>
-                                    <div class="browser-url">yourbusiness.in</div>
-                                </div>
-                                <div class="browser-content">
-                                    <div class="browser-hero browser-hero-pink" style="height:40px;"></div>
-                                    <div class="browser-lines">
-                                        <div class="browser-line"></div>
-                                        <div class="browser-line"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portfolio-info" style="padding:16px 20px;">
-                            <div class="portfolio-type">Your Business</div>
-                            <div class="portfolio-name">Your Brand, Online</div>
-                            <div class="portfolio-desc">Professional and ready to grow</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="slide-number">07 — 09</div>
-    </section>
-
-    <!-- SLIDE 8: GUARANTEE -->
-    <section class="slide" id="slide-7">
-        <div class="slide-content">
-            <span class="slide-tag fade-up">Your Protection</span>
-            <h2 class="slide-title fade-up fade-up-d1">Zero Risk.<br><em>That's Webly's Promise.</em></h2>
-            <p class="slide-subtitle fade-up fade-up-d2">Webly believes in earning trust through transparency, not just promises.</p>
-            <div class="guarantee-grid fade-up fade-up-d3">
-                <div class="guarantee-card glass">
-                    <div class="guarantee-icon-wrap">🛡️</div>
-                    <h3>10-Day Money Back</h3>
-                    <p>If Webly doesn't deliver your website within 10 working days, you get a full refund of your advance. No questions.</p>
-                </div>
-                <div class="guarantee-card glass">
-                    <div class="guarantee-icon-wrap">👁️</div>
-                    <h3>See Before You Pay</h3>
-                    <p>You see the complete website before paying the remaining 50%. You only pay the balance when you're satisfied.</p>
-                </div>
-                <div class="guarantee-card glass">
-                    <div class="guarantee-icon-wrap">📱</div>
-                    <h3>Daily Updates</h3>
-                    <p>You get a WhatsApp update every single day during the build. No silence, no guessing — complete transparency.</p>
-                </div>
-            </div>
-        </div>
-        <div class="slide-number">08 — 09</div>
-    </section>
-
-    <!-- SLIDE 9: CONTACT -->
-    <section class="slide slide-contact" id="slide-8">
-        <div class="slide-content">
-            <span class="slide-tag fade-up">Let's Talk</span>
-            <h1 class="slide-title fade-up fade-up-d1">Ready to Get<br><em>Your Business Online?</em></h1>
-            <p class="slide-subtitle fade-up fade-up-d2">No pressure, no commitment. Let's have a quick chat about what your business needs.</p>
-            <div class="contact-cards fade-up fade-up-d3">
-                <a href="tel:+919663598135" class="contact-card glass">
-                    <div class="contact-icon-wrap contact-icon-phone">📞</div>
-                    <div class="contact-card-info">
-                        <div class="contact-card-label">Call</div>
-                        <div class="contact-card-value">+91 96635 98135</div>
-                    </div>
-                </a>
-                <a href="mailto:vinaykumarperson99@gmail.com" class="contact-card glass">
-                    <div class="contact-icon-wrap contact-icon-email">✉️</div>
-                    <div class="contact-card-info">
-                        <div class="contact-card-label">Email</div>
-                        <div class="contact-card-value">vinaykumarperson99@gmail.com</div>
-                    </div>
-                </a>
-                <a href="https://wa.me/919663598135?text=Hi%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business.%20Can%20we%20discuss%3F" target="_blank" class="contact-card glass">
-                    <div class="contact-icon-wrap contact-icon-whatsapp">💬</div>
-                    <div class="contact-card-info">
-                        <div class="contact-card-label">WhatsApp</div>
-                        <div class="contact-card-value">+91 96635 98135</div>
-                    </div>
-                </a>
-            </div>
-            <a href="https://wa.me/919663598135?text=Hi%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business.%20Can%20we%20discuss%3F" target="_blank" class="contact-cta fade-up fade-up-d4">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Start a Conversation on WhatsApp
-            </a>
-            <div class="contact-trust fade-up fade-up-d5">
-                <div class="trust-item">
-                    <span class="trust-icon">📍</span>
-                    HSR Layout, Bangalore
-                </div>
-                <div class="trust-item">
-                    <span class="trust-icon">⚡</span>
-                    Reply within 2 hours
-                </div>
-                <div class="trust-item">
-                    <span class="trust-icon">🛡️</span>
-                    10-day money back guarantee
-                </div>
-            </div>
-        </div>
-        <div class="slide-number">09 — 09</div>
-    </section>
+        <div class="controls-counter" id="counter">01 / 09</div>
+    </div>
 
     <script>
-        // Fade-in animations on scroll
-        const fadeElements = document.querySelectorAll('.fade-up');
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-        fadeElements.forEach(el => fadeObserver.observe(el));
-
-        // Navigation dots
         const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.nav-dot');
+        const dotsContainer = document.getElementById('dots');
+        const progress = document.getElementById('progress');
+        const counter = document.getElementById('counter');
+        const totalSlides = slides.length;
+        let current = 0;
 
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const slideIndex = dot.getAttribute('data-slide');
-                document.getElementById('slide-' + slideIndex).scrollIntoView({ behavior: 'smooth' });
-            });
+        // Create dots
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'ctrl-dot' + (i === 0 ? ' active' : '');
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
         });
 
-        const slideObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const slideId = entry.target.id.split('-')[1];
-                    dots.forEach(d => d.classList.remove('active'));
-                    const activeDot = document.querySelector(`.nav-dot[data-slide="${slideId}"]`);
-                    if (activeDot) activeDot.classList.add('active');
-                }
-            });
-        }, { threshold: 0.4 });
-        slides.forEach(slide => slideObserver.observe(slide));
+        function goTo(index) {
+            if (index === current || index < 0 || index >= totalSlides) return;
 
-        // 3D tilt effect on glass cards
-        if (window.matchMedia('(hover: hover) and (min-width: 1024px)').matches) {
-            document.querySelectorAll('.solution-card, .guarantee-card, .plan-card, .process-card').forEach(card => {
+            const prev = slides[current];
+            const next = slides[index];
+
+            prev.classList.remove('active');
+            prev.classList.add(index > current ? 'exit-up' : '');
+            setTimeout(() => prev.classList.remove('exit-up'), 500);
+
+            next.classList.add('active');
+            current = index;
+
+            // Update dots
+            document.querySelectorAll('.ctrl-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === current);
+            });
+
+            // Update progress
+            progress.style.width = ((current + 1) / totalSlides * 100) + '%';
+
+            // Update counter
+            counter.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+        }
+
+        // Arrow buttons
+        document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+        document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); goTo(current - 1); }
+        });
+
+        // Mouse wheel navigation
+        let wheelLock = false;
+        document.addEventListener('wheel', (e) => {
+            if (wheelLock) return;
+            wheelLock = true;
+            if (e.deltaY > 0) goTo(current + 1);
+            else goTo(current - 1);
+            setTimeout(() => wheelLock = false, 800);
+        });
+
+        // Touch swipe
+        let touchStartY = 0;
+        document.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; });
+        document.addEventListener('touchend', (e) => {
+            const diff = touchStartY - e.changedTouches[0].clientY;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) goTo(current + 1);
+                else goTo(current - 1);
+            }
+        });
+
+        // 3D tilt on cards
+        if (window.matchMedia('(hover:hover) and (min-width:1024px)').matches) {
+            document.querySelectorAll('.card, .plan, .step, .folio-card').forEach(card => {
                 card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = (e.clientX - rect.left) / rect.width - 0.5;
-                    const y = (e.clientY - rect.top) / rect.height - 0.5;
-                    card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-6px)`;
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateY(0)';
-                    card.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                });
-                card.addEventListener('mouseenter', () => {
+                    const r = card.getBoundingClientRect();
+                    const x = (e.clientX - r.left) / r.width - 0.5;
+                    const y = (e.clientY - r.top) / r.height - 0.5;
+                    card.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateY(-6px)`;
                     card.style.transition = 'transform 0.1s';
                 });
-            });
-        }
-
-        // Parallax floating shapes on mouse move
-        if (window.matchMedia('(min-width: 1024px)').matches) {
-            document.addEventListener('mousemove', (e) => {
-                const x = (e.clientX / window.innerWidth - 0.5) * 2;
-                const y = (e.clientY / window.innerHeight - 0.5) * 2;
-                document.querySelectorAll('.shape-blob').forEach((blob, i) => {
-                    const speed = (i + 1) * 8;
-                    blob.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
                 });
             });
         }
+
+        // Init progress
+        progress.style.width = (1 / totalSlides * 100) + '%';
     </script>
 
 </body>
